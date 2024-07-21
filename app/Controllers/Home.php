@@ -100,6 +100,9 @@ class Home extends BaseController
         if ($data == null) {
             echo "data tidak ditemukan";
         } else {
+            if ($data['stage']==0) {
+                return view('UploadBuktiTf',$data);
+            }
             d($data);
         }
     }
