@@ -1,0 +1,11 @@
+CRITICAL - 2024-07-21 00:51:58 --> ErrorException: Array to string conversion
+[Method: POST, Route: postReg]
+in APPPATH/Controllers/Home.php on line 63.
+ 1 APPPATH/Controllers/Home.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', '/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Controllers/Home.php', 63)
+ 2 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Home->formPost()
+ 3 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
