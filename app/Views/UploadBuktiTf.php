@@ -60,10 +60,14 @@
                         <h3 class="mt1">Upload Bukti Pembayaran</h3>
                     </div>
                     <div class="card-body">
-                        <form action="<?php echo base_url('upload') ?>" method="post" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label class="form-label" for="bukti">Bukti Pembayaran</label>
-                                <input type="file" name="bukti" class="form-control" id="bukti">
+                        <form action="<?php echo base_url('uploadBuktiTf')?>" method="post" enctype="multipart/form-data" >
+                            <div class="mb-3"> 
+                                <div class="form-group">
+                                    <label class="form-label" for="bukti" >Bukti Pembayaran</label>
+                                    <input type="file" name="bukti" accept=".jpg, .jpeg, .png" class="form-control" id="bukti">
+                                    <input type="hidden" name="par1" value="<?php echo $noreg?>">
+                                    <input type="hidden" name="par2" value="<?php echo $tgl_lahir?>">
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Upload</button>
                         </form>

@@ -100,11 +100,40 @@ class Home extends BaseController
         if ($data == null) {
             echo "data tidak ditemukan";
         } else {
-            if ($data['stage']==0) {
-                return view('UploadBuktiTf',$data);
+            if ($data['stage'] == 0) {
+                return view('UploadBuktiTf', $data);
             }
             d($data);
         }
+    }
+
+    function BuktiTf()
+    {
+        $file = $this->request->getFile('bukti');
+        $data = array(
+            'noreg' => $this->request->getPost('par1'),
+            'tgl_lahir' => $this->request->getPost('par2')
+        );
+        if ($file->isValid()) {
+            if ($this->siswa
+                ->where('noreg', $data['noreg'])
+                ->where('tgl_lahir', $data['tgl_lahir'])->first() != null
+            ) {
+                // $ext = $file->getClientExtension();
+                $newName = $file->getRandomName();
+                $file->move('uploads/buktitf', $newName);
+                $this->siswa->where('noreg', $data['noreg'])->set('bukti_tf', $newName)->update();
+                $this->siswa->where('noreg', $data['noreg'])->set('stage', 1)->update();
+                return view('BuktiTfSukses');;
+            } else {
+                echo "Data Tidak ditemukan";
+            }
+        } else {
+            echo "gagal upload file";
+        }
+        // echo "is valid " . $file->isValid();
+        // echo "<br> size " . $file->getSize();
+        // echo "<br> ext " . $file->getClientExtension();
     }
 
     function getProvinsi()
