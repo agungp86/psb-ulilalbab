@@ -27,7 +27,7 @@ class Home extends BaseController
     }
     public function index(): string
     {
-        return view('Beranda');
+        return view('Beranda2');
     }
 
     function signUp()
