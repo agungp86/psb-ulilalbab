@@ -139,7 +139,7 @@
                         </label>
                     </div>
                     <div class="d-grid gap-2 col-6 mx-auto">
-                        <button class="btn btn-outline-primary btn-block" type="submit" id="submitButton" disabled>Daftar</button>
+                        <button class="btn btn-primary btn-block" type="submit" id="submitButton" disabled>Daftar</button>
                     </div>
                 </div>
             </div>

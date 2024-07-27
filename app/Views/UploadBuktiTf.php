@@ -43,7 +43,7 @@
                             <tr>
                                 <td>Nomor Telepon</td>
                                 <td>:</td>
-                                <td><?php echo $telp_ortu ?></td>
+                                <td><?= substr($telp_ortu, 0, 7) . str_repeat('*', strlen($telp_ortu) - 7) ?></td>
                             </tr>
                             <tr>
                                 <td>Nomor Pendaftaran</td>

@@ -59,11 +59,11 @@
                 <div class="col-md-10 col-lg-8 mx-auto text-center">
                     <i class="fa-solid fa-child-reaching fa-2x mb-2 text-white"></i>
                     <h2 class="text-white mb-5">Cek Status Pendaftaran</h2>
-                    <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
+                    <form class="form-signup" id="contactForm" action="<?php echo base_url('cekRegistrasi') ?>" method="post">
                         <!-- Email address input-->
                         <div class="row input-group-newsletter">
                             <div class="col"><input class="form-control" id="noreg" type="text"
-                                    placeholder="Nomor Pendaftaran" aria-label="Nomor Pendaftaran" /></div>
+                            name="noreg"    placeholder="Nomor Pendaftaran" aria-label="Nomor Pendaftaran" /></div>
                             <div class="col-auto"><button class="btn btn-primary" id="submitButton"
                                     type="submit">Kirim</button></div>
                         </div>

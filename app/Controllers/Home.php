@@ -66,7 +66,13 @@ class Home extends BaseController
             $noreg = $this->noreg($siswa_id, $data['telepon_orang_tua']);
             $this->siswa->where('id', $siswa_id)->set('noreg', $noreg)->update();
 
-            echo "data berhasil disimpan dengan nomor registrasi " . $noreg;
+            // echo "data berhasil disimpan dengan nomor registrasi " . $noreg;
+            $data['noreg'] = $noreg;
+            $content = array(
+                'content'   => view('RegSukses', $data),
+                'judul'     => 'Data Berhasil Disimpan'
+            );
+            return view('Notif', $content);
         } else {
             echo "Anda sudah terdaftar sebelumnya dengan nomor registrasi " . $duplikat['noreg'];
         }
@@ -102,8 +108,13 @@ class Home extends BaseController
         } else {
             if ($data['stage'] == 0) {
                 return view('UploadBuktiTf', $data);
+            } else {
+                $content = array(
+                    'content' => view('BuktiTfSukses'),
+                    'judul' => 'Bukti Tf Berhasil Diupload'
+                );
+                return view('Notif',$content);
             }
-            d($data);
         }
     }
 
@@ -115,7 +126,8 @@ class Home extends BaseController
             'tgl_lahir' => $this->request->getPost('par2')
         );
         if ($file->isValid()) {
-            if ($this->siswa
+            if (
+                $this->siswa
                 ->where('noreg', $data['noreg'])
                 ->where('tgl_lahir', $data['tgl_lahir'])->first() != null
             ) {
@@ -124,7 +136,11 @@ class Home extends BaseController
                 $file->move('uploads/buktitf', $newName);
                 $this->siswa->where('noreg', $data['noreg'])->set('bukti_tf', $newName)->update();
                 $this->siswa->where('noreg', $data['noreg'])->set('stage', 1)->update();
-                return view('BuktiTfSukses');;
+                $content = array(
+                    'content' => view('BuktiTfSukses'),
+                    'judul' => 'Bukti Tf Berhasil Diupload'
+                );
+                return view('Notif',$content);
             } else {
                 echo "Data Tidak ditemukan";
             }
