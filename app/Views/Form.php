@@ -13,7 +13,7 @@
 <body>
     <div class="container mt-2">
         <h1>Form Pendaftaran Siswa Baru</h1>
-        <form id="registrationForm" method="post" action="<?php echo base_url('postReg')?>">
+        <form id="registrationForm" method="post" action="<?php echo base_url('postReg') ?>">
             <div class="card mb-3">
                 <div class="card-header">
                     <h3>Data Diri</h3>
@@ -33,7 +33,7 @@
                             </select>
                         </div>
                         <div class="col-lg-4">
-                        <label class="form-label" for="jalur">Jalur Pendaftaran</label>
+                            <label class="form-label" for="jalur">Jalur Pendaftaran</label>
                             <select class="form-select" name="jalur" aria-label="Default select example">
                                 <option value="Reguler">Reguler</option>
                                 <option value="Prestasi">Prestasi</option>
@@ -64,8 +64,13 @@
                             <input type="tel" id="telepon_orang_tua" class="form-control" name="telepon_orang_tua" placeholder="+62" required>
                         </div>
                     </div>
-
+                    <hr>
                     <div class="row">
+                        <div class="col-lg-12">
+                            <label class="form-label" for="alamat">Alamat Rumah :</label>
+                            <input type="text" class="form-control" name="alamat" id="" placeholder="RT RW Jalan Blok No">
+                        </div>
+
                         <div class="col-lg-6">
                             <label class="form-labe"> Provinsi </label>
                             <select class="form-select" name="provinsi_siswa" id="select2-provinsi"></select>
@@ -82,14 +87,10 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label class="form-labe"> Kelurahan </label>
+                            <label class="form-labe"> Kelurahan / Desa</label>
                             <select class="form-select" name="kelurahan_siswa" id="select2-kelurahan"></select>
                         </div>
 
-                        <div class="col-lg-12">
-                            <label class="form-label" for="alamat">Detail Alamat:</label>
-                            <input type="text" class="form-control" name="alamat" id="" placeholder="RT RW Jalan Blok No">
-                        </div>
 
                     </div>
                 </div>
@@ -122,7 +123,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label class="form-label" for="kelurahan_sekolah">Kelurahan Asal Sekolah:</label>
+                            <label class="form-label" for="kelurahan_sekolah">Kelurahan / Desa Asal Sekolah:</label>
                             <select class="form-select" id="kelurahan_sekolah" name="kelurahan_sekolah" required></select>
                         </div>
                     </div>
@@ -131,9 +132,10 @@
             <div class="card mt-3 mb-5">
                 <div class="card-body">
                     <div class="form-check mb-3">
+
                         <input class="form-check-input" type="checkbox" id="termsCheckbox">
                         <label class="form-check-label" for="termsCheckbox">
-                            Pastikan data yang anda inputkan benar
+                            Ceklist (v) jika data sudah dipastikan benar
                         </label>
                     </div>
                     <div class="d-grid gap-2 col-6 mx-auto">
@@ -151,7 +153,7 @@
         document.getElementById('submitButton').disabled = !this.checked;
     });
 
-    var urlProvinsi = "<?php echo base_url('Prov')?>";
+    var urlProvinsi = "<?php echo base_url('Prov') ?>";
     var urlKabupaten = "https://ibnux.github.io/data-indonesia/kabupaten/";
     var urlKecamatan = "https://ibnux.github.io/data-indonesia/kecamatan/";
     var urlKelurahan = "https://ibnux.github.io/data-indonesia/kelurahan/";

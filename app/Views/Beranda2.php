@@ -32,7 +32,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">Daftar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo base_url('registrasiBaru')?>">Daftar</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Cek Status</a></li>
                     <li class="nav-item"><a class="nav-link" href="#signup">Brosur</a></li>
                 </ul>
@@ -46,7 +46,7 @@
                 <div class="text-center">
                     <h1 class="mx-auto my-0">Penerimaan Siswa Baru</h1>
                     <h2 class="mx-auto mt-2 mb-5">SMPIT Ulil Albab Karanganyar</h2>
-                    <a class="btn btn-primary" href="#about">Daftar Baru</a>
+                    <a class="btn btn-primary" href="<?php echo base_url('registrasiBaru')?>">Daftar Baru</a>
                     <a class="btn btn-success" href="#projects">Cek Pendaftaran</a>
                 </div>
             </div>
