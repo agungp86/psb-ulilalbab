@@ -74,7 +74,12 @@ class Home extends BaseController
             );
             return view('Notif', $content);
         } else {
-            echo "Anda sudah terdaftar sebelumnya dengan nomor registrasi " . $duplikat['noreg'];
+            $content = array(
+                'content'   => view('Duplikat', $duplikat),
+                'judul'     => 'Duplikasi Data'
+            );
+
+            return view('Notif', $content);
         }
 
 
@@ -111,7 +116,7 @@ class Home extends BaseController
             } else {
                 $content = array(
                     'content' => view('BuktiTfSukses'),
-                    'judul' => 'Bukti Tf Berhasil Diupload'
+                    'judul' => 'Bukti Tranfer Berhasil Diupload'
                 );
                 return view('Notif',$content);
             }
@@ -138,7 +143,7 @@ class Home extends BaseController
                 $this->siswa->where('noreg', $data['noreg'])->set('stage', 1)->update();
                 $content = array(
                     'content' => view('BuktiTfSukses'),
-                    'judul' => 'Bukti Tf Berhasil Diupload'
+                    'judul' => 'Bukti Transfer Berhasil Diupload'
                 );
                 return view('Notif',$content);
             } else {

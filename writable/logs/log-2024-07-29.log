@@ -1,0 +1,30 @@
+CRITICAL - 2024-07-29 02:47:28 --> ValueError: str_repeat(): Argument #2 ($times) must be greater than or equal to 0
+[Method: POST, Route: cekRegistrasi]
+in APPPATH/Views/UploadBuktiTf.php on line 46.
+ 1 APPPATH/Views/UploadBuktiTf.php(46): str_repeat('*', -1)
+ 2 SYSTEMPATH/View/View.php(234): include('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Views/UploadBuktiTf.php')
+ 3 SYSTEMPATH/View/View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1171): CodeIgniter\View\View->render('UploadBuktiTf', [], true)
+ 5 APPPATH/Controllers/Home.php(110): view('UploadBuktiTf', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Home->checkRegistrasi()
+ 7 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
+CRITICAL - 2024-07-29 02:49:13 --> ValueError: str_repeat(): Argument #2 ($times) must be greater than or equal to 0
+[Method: POST, Route: cekRegistrasi]
+in APPPATH/Views/UploadBuktiTf.php on line 46.
+ 1 APPPATH/Views/UploadBuktiTf.php(46): str_repeat('*', -1)
+ 2 SYSTEMPATH/View/View.php(234): include('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Views/UploadBuktiTf.php')
+ 3 SYSTEMPATH/View/View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1171): CodeIgniter\View\View->render('UploadBuktiTf', [], true)
+ 5 APPPATH/Controllers/Home.php(110): view('UploadBuktiTf', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Home->checkRegistrasi()
+ 7 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
