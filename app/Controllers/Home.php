@@ -113,13 +113,21 @@ class Home extends BaseController
         } else {
             if ($data['stage'] == 0) {
                 return view('UploadBuktiTf', $data);
-            } else {
+            } elseif ($data['stage'] == 1) {
                 $content = array(
                     'content' => view('BuktiTfSukses'),
                     'judul' => 'Bukti Tranfer Berhasil Diupload'
                 );
-                return view('Notif',$content);
+                return view('Notif', $content);
             }
+            elseif ($data['stage']== 2) {
+               echo "Diferivikasi Admin";
+            }
+            elseif ($data['stage']== 3) {
+                echo "Upload File";
+             } else {
+                echo "Data tidak ditemukan, anda siapa?";
+             }
         }
     }
 
@@ -145,7 +153,7 @@ class Home extends BaseController
                     'content' => view('BuktiTfSukses'),
                     'judul' => 'Bukti Transfer Berhasil Diupload'
                 );
-                return view('Notif',$content);
+                return view('Notif', $content);
             } else {
                 echo "Data Tidak ditemukan";
             }
