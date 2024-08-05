@@ -2,7 +2,7 @@
     <div class="card border-warning">
         <div class="card-header border-warning d-flex justify-content-between align-items-center ">
         <i class="fa-solid fa-triangle-exclamation text-warning fa-2x"></i> <span>Duplikasi Data</span>
-    <a href="<?= base_url('home') ?>" class="btn btn-outline-secondary ml-auto"><i class="fa-solid fa-house-chimney"></i></a>
+    <a href="<?= base_url() ?>" class="btn btn-outline-secondary ml-auto"><i class="fa-solid fa-house-chimney"></i></a>
 
         </div>
         <div class="card-body text-secondary">

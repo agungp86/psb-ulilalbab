@@ -1,9 +1,9 @@
 <div class="container mt-3">
     <div class="card border-success">
-    <div class="card-header border-success d-flex justify-content-between align-items-center ">
-    <span>Data Berhasil Disimpan</span>
-    <a href="<?= base_url('home') ?>" class="btn btn-outline-primary ml-auto"><i class="fa-solid fa-house-chimney"></i></a>
-</div>
+        <div class="card-header border-success d-flex justify-content-between align-items-center ">
+            <span>Data Berhasil Disimpan</span>
+            <a href="<?= base_url('home') ?>" class="btn btn-outline-primary ml-auto"><i class="fa-solid fa-house-chimney"></i></a>
+        </div>
         <div class="card-body border-success">
             <p>
                 Terima kasih.
@@ -13,7 +13,8 @@
             </p>
         </div>
         <div class="card-footer border-success d-flex justify-content-end">
-            <a href="#" class="btn btn-outline-success" onclick="submitForm()">Upload Bukti Tranfer</a>
+            
+            <a href="#" class="btn btn-outline-success" onclick="submitForm()"><i class="fa-regular fa-hand-point-right"></i> Lanjut ke pembayaran</a>
             <form id="hiddenForm" action="<?= base_url('cekRegistrasi') ?>" method="post" style="display: none;">
                 <input type="hidden" name="noreg" value="<?= $noreg ?>">
             </form>

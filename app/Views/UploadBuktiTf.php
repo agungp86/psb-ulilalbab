@@ -69,19 +69,20 @@
                             <p> Silahkan melakukan pembayaran biaya pendaftaran sebesar <strong>Rp.300.000,-</strong> dengan transfer ke nomor rekening Bank Syariah Indonesia (BSI) <button class="btn btn-outline-secondary btn-sm" onclick="copyToClipboard()"><strong>5777-5777-53 </strong><i class="fa-regular fa-clone"></i></button> atas nama SMPIT Ulil Albab atau pembayaran cash dengan datang langsung ke kantor Pesantren Ulil Albab Karanganyar.
                                 Informasi lebih lanjut hubungi admin 0811944244
                                 <button class="btn btn-outline-success btn-sm" onclick="window.open('https://wa.me/62811944244', '_blank')">
-                                <i class="fa-brands fa-whatsapp"></i> Chat 
+                                    <i class="fa-brands fa-whatsapp"></i> Chat
                         </div>
 
                         <form action="<?php echo base_url('uploadBuktiTf') ?>" method="post" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <div class="form-group">
                                     <label class="form-label" for="bukti">Bukti Pembayaran</label>
-                                    <input type="file" name="bukti" accept=".jpg, .jpeg, .png" class="form-control" id="bukti">
+                                    <input type="file" name="bukti" accept=".jpg, .jpeg, .png" class="form-control" id="bukti" onchange="checkFile()">
                                     <input type="hidden" name="par1" value="<?php echo $noreg ?>">
                                     <input type="hidden" name="par2" value="<?php echo $tgl_lahir ?>">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Upload</button>
+                            <button type="submit" class="btn btn-primary" id="submitBtn" disabled onclick="showAlert(event)">Upload</button>
+
                         </form>
                     </div>
 
@@ -98,6 +99,20 @@
                 document.execCommand("copy");
                 document.body.removeChild(tempInput);
                 alert("Nomor rekening disalin ke papan klip : 5777577753");
+            }
+
+            function checkFile() {
+                const fileInput = document.getElementById('bukti');
+                const submitBtn = document.getElementById('submitBtn');
+                submitBtn.disabled = !fileInput.value;
+            }
+
+            function showAlert(event) {
+                const submitBtn = document.getElementById('submitBtn');
+                if (submitBtn.disabled) {
+                    event.preventDefault();
+                    alert("Please attach a file before submitting.");
+                }
             }
         </script>
 </body>
