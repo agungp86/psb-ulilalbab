@@ -69,7 +69,7 @@
                             <p> Silahkan melakukan pembayaran biaya pendaftaran sebesar <strong>Rp.300.000,-</strong> dengan transfer ke nomor rekening Bank Syariah Indonesia (BSI) <button class="btn btn-outline-secondary btn-sm" onclick="copyToClipboard()"><strong>5777-5777-53 </strong><i class="fa-regular fa-clone"></i></button> atas nama SMPIT Ulil Albab atau pembayaran cash dengan datang langsung ke kantor Pesantren Ulil Albab Karanganyar.
                                 Informasi lebih lanjut hubungi admin 0811944244
                                 <button class="btn btn-outline-success btn-sm" onclick="window.open('https://wa.me/62811944244', '_blank')">
-                                    <i class="fa-brands fa-whatsapp"></i> Chat
+                                    <i class="fa-brands fa-whatsapp"></i> Chat </button>
                         </div>
 
                         <form action="<?php echo base_url('uploadBuktiTf') ?>" method="post" enctype="multipart/form-data">

@@ -121,7 +121,11 @@ class Home extends BaseController
                 return view('Notif', $content);
             }
             elseif ($data['stage']== 2) {
-               echo "Diferivikasi Admin";
+                $content = array(
+                    'content' => view('Verified'),
+                    'judul' => 'Pendaftaran dan pembayaran diverifikas'
+                );
+                return view('Notif', $content);
             }
             elseif ($data['stage']== 3) {
                 echo "Upload File";
