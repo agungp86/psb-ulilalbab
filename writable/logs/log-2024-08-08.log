@@ -1,0 +1,86 @@
+CRITICAL - 2024-08-08 07:28:02 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "login.php"
+[Method: POST, Route: login]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 41.
+ 1 SYSTEMPATH/View/View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('login.php')
+ 2 SYSTEMPATH/Common.php(1171): CodeIgniter\View\View->render('login', [], true)
+ 3 APPPATH/Controllers/Home.php(221): view('login')
+ 4 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Home->AdminLogin()
+ 5 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
+INFO - 2024-08-08 13:15:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 13:15:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 13:18:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 13:18:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 13:19:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 14:03:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 14:03:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 14:03:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 14:04:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 14:04:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 14:52:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-08 14:52:11 --> ErrorException: Undefined variable $k
+[Method: POST, Route: login]
+in APPPATH/Views/admin/dashboard.php on line 23.
+ 1 APPPATH/Views/admin/dashboard.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $k', '/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Views/admin/dashboard.php', 23)
+ 2 SYSTEMPATH/View/View.php(234): include('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Views/admin/dashboard.php')
+ 3 SYSTEMPATH/View/View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1171): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH/Controllers/Home.php(209): view('admin/dashboard', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Home->AdminLogin()
+ 7 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
+INFO - 2024-08-08 14:53:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-08 14:53:42 --> ErrorException: Undefined variable $data
+[Method: POST, Route: login]
+in APPPATH/Views/admin/dashboard.php on line 23.
+ 1 APPPATH/Views/admin/dashboard.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', '/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Views/admin/dashboard.php', 23)
+ 2 SYSTEMPATH/View/View.php(234): include('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Views/admin/dashboard.php')
+ 3 SYSTEMPATH/View/View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1171): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH/Controllers/Home.php(209): view('admin/dashboard', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Home->AdminLogin()
+ 7 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
+INFO - 2024-08-08 14:54:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 14:55:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 14:55:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 14:56:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-08 14:56:03 --> ErrorException: Undefined array key 1
+[Method: POST, Route: login]
+in APPPATH/Views/admin/dashboard.php on line 22.
+ 1 APPPATH/Views/admin/dashboard.php(22): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 1', '/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Views/admin/dashboard.php', 22)
+ 2 SYSTEMPATH/View/View.php(234): include('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Views/admin/dashboard.php')
+ 3 SYSTEMPATH/View/View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1171): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH/Controllers/Home.php(209): view('admin/dashboard', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Home->AdminLogin()
+ 7 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
+INFO - 2024-08-08 14:56:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 14:57:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 14:59:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 14:59:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 14:59:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 15:00:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 15:02:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 15:02:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 15:02:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 15:02:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 15:04:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-08 15:06:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

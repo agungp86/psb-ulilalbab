@@ -119,19 +119,17 @@ class Home extends BaseController
                     'judul' => 'Bukti Tranfer Berhasil Diupload'
                 );
                 return view('Notif', $content);
-            }
-            elseif ($data['stage']== 2) {
+            } elseif ($data['stage'] == 2) {
                 $content = array(
                     'content' => view('Verified'),
                     'judul' => 'Pendaftaran dan pembayaran diverifikas'
                 );
                 return view('Notif', $content);
-            }
-            elseif ($data['stage']== 3) {
-                echo "Upload File";
-             } else {
+            } elseif ($data['stage'] == 3) {
+                $this->coba();
+            } else {
                 echo "Data tidak ditemukan, anda siapa?";
-             }
+            }
         }
     }
 
@@ -169,8 +167,98 @@ class Home extends BaseController
         // echo "<br> ext " . $file->getClientExtension();
     }
 
+    public function Admin(){
+        $content = array(
+            'content' => view('admin/login'),
+            'judul' => 'Login Dashboard Admin'
+        );
+        return view('admin/template', $content);
+    }
+
+    public function AdminLogin(){
+        helper(['form']);
+        
+        // Check if the request is a POST request
+        if ($this->request->getMethod() == 'POST') {
+            // Validate the input
+            $rules = [
+                'username' => 'required',
+                'password' => 'required'
+            ];
+            
+            if ($this->validate($rules)) {
+                // Get the username and password from the form
+                $username = $this->request->getPost('username');
+                $password = $this->request->getPost('password');
+                
+                // Load the user model
+                // $model = new UserModel();
+                
+                // Check the user's credentials
+                // $user = $model->where('username', $username)->first();
+                
+                if ($username == "admin" && $password =="adminsmpit") {
+                    // Set session data
+                    session()->set([
+                        'username' => $username,
+                        'isLoggedIn' => true
+                    ]);
+                    $data = array(  'session' => session()->get(),
+                                    'record' => $this->siswa->findAll());
+                    $content = array(
+                        'content' => view('admin/dashboard', $data),
+                        'judul' => ' Dashboard Admin'
+                    );
+                    return view('admin/template', $content);
+
+                } else {
+                    // Set an error message
+                    session()->setFlashdata('error', 'Invalid login credentials.');
+                }
+            }
+            echo "admin gagal validasi";
+        }
+
+        // $this->Admin(); 
+        echo "admin gagal login";
+        
+    }
+
+    public function logout()
+    {
+        // Destroy the session
+        session()->destroy();
+        return redirect()->to('/login');
+    }
+
+    function coba()
+    {
+        $key = 7;
+        $mod = 100;
+
+        // Enkripsi
+        $original_id = 3;
+        $encrypted_id = $this->encrypt_id($original_id, $key, $mod);
+        echo "Original ID: $original_id -> Encrypted ID: $encrypted_id\n";
+
+        // Dekripsi
+        $decrypted_id = $this->decrypt_id($encrypted_id, $key, $mod);
+        echo "<br>Encrypted ID: $encrypted_id -> Decrypted ID: $decrypted_id\n";
+    }
+
     function getProvinsi()
     {
         return json_encode($this->provinsi->findAll());
+    }
+
+    // Enkripsi id user
+    function encrypt_id($original_id, $key, $mod)
+    {
+        return ($original_id + $key) % $mod;
+    }
+
+    function decrypt_id($encrypted_id, $key, $mod)
+    {
+        return ($encrypted_id - $key + $mod) % $mod;
     }
 }
