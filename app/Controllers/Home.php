@@ -167,7 +167,8 @@ class Home extends BaseController
         // echo "<br> ext " . $file->getClientExtension();
     }
 
-    public function Admin(){
+    public function Admin()
+    {
         $content = array(
             'content' => view('admin/login'),
             'judul' => 'Login Dashboard Admin'
@@ -175,9 +176,10 @@ class Home extends BaseController
         return view('admin/template', $content);
     }
 
-    public function AdminLogin(){
+    public function AdminLogin()
+    {
         helper(['form']);
-        
+
         // Check if the request is a POST request
         if ($this->request->getMethod() == 'POST') {
             // Validate the input
@@ -185,32 +187,33 @@ class Home extends BaseController
                 'username' => 'required',
                 'password' => 'required'
             ];
-            
+
             if ($this->validate($rules)) {
                 // Get the username and password from the form
                 $username = $this->request->getPost('username');
                 $password = $this->request->getPost('password');
-                
+
                 // Load the user model
                 // $model = new UserModel();
-                
+
                 // Check the user's credentials
                 // $user = $model->where('username', $username)->first();
-                
-                if ($username == "admin" && $password =="adminsmpit") {
+
+                if ($username == "admin" && $password == "adminsmpit") {
                     // Set session data
                     session()->set([
                         'username' => $username,
                         'isLoggedIn' => true
                     ]);
-                    $data = array(  'session' => session()->get(),
-                                    'record' => $this->siswa->findAll());
+                    $data = array(
+                        'session' => session()->get(),
+                        'record' => $this->siswa->findAll()
+                    );
                     $content = array(
                         'content' => view('admin/dashboard', $data),
                         'judul' => ' Dashboard Admin'
                     );
                     return view('admin/template', $content);
-
                 } else {
                     // Set an error message
                     session()->setFlashdata('error', 'Invalid login credentials.');
@@ -221,7 +224,32 @@ class Home extends BaseController
 
         // $this->Admin(); 
         echo "admin gagal login";
-        
+    }
+
+    //detail siswa per id
+    public function Detail($id)
+    {
+        $siswa_0 = $this->siswa->where('id', $id)->first();
+        $siswa_1 = array(
+            'prov1' => $this->getRegionName('t_provinsi',$siswa_0['prov1']),
+            'kabko1' => $this->getRegionName('t_kota',$siswa_0['kabko1']),
+            'kec1' => $this->getRegionName('t_kecamatan',$siswa_0['kec1']),
+            'kelurahan1' => $this->getRegionName('t_kelurahan',$siswa_0['kelurahan1']),
+            'prov2' => $this->getRegionName('t_provinsi',$siswa_0['prov2']),
+            'kabko2' => $this->getRegionName('t_kota',$siswa_0['kabko2']),
+            'kec2' => $this->getRegionName('t_kecamatan',$siswa_0['kec2']),
+            'kelurahan2' => $this->getRegionName('t_kelurahan',$siswa_0['kelurahan2']),
+        );
+        $siswa = array_replace($siswa_0,$siswa_1);
+        d($siswa);
+
+        $data = array('siswa'=>$siswa);
+
+        $content = array(
+            'content' => view('admin/detail_siswa', $data),
+            'judul' => ' Dashboard Admin'
+        );
+        return view('admin/template', $content);
     }
 
     public function logout()
@@ -250,6 +278,41 @@ class Home extends BaseController
     {
         return json_encode($this->provinsi->findAll());
     }
+
+    function prov($id)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->table('t_provinsi')
+            ->select('nama')
+            ->where('id', $id)
+            ->get();
+
+        $result = $query->getRow();
+
+        if ($result) {
+            echo $result->nama;
+        } else {
+            echo 'No region found with this id.';
+        }
+    }
+
+    function getRegionName($table, $id)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->table($table)
+            ->select('nama')
+            ->where('id', $id)
+            ->get();
+    
+        $result = $query->getRow();
+    
+        if ($result) {
+            return $result->nama;
+        } else {
+            return 'No region found with this id.';
+        }
+    }
+
 
     // Enkripsi id user
     function encrypt_id($original_id, $key, $mod)
