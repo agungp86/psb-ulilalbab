@@ -30,6 +30,23 @@
                                 <button class="btn btn-outline-primary" onclick="window.open('<?= base_url('detail_siswa/' . $k['id']) ?>', '_blank')">
                                     <i class="fa-solid fa-maximize"></i>
                                 </button>
+
+                                <?php
+                                switch ($k['stage']) {
+                                    case 0:
+                                        echo '<span class="badge text-bg-secondary">belum bayar</span>';
+                                        break;
+                                    case 1:
+                                        echo '<span class="badge text-bg-success">sudah bayar</span>';
+                                        break;
+                                    case 2:
+                                        echo '<span class="badge text-bg-primary">terkonfirmasi</span>';
+                                        break;
+                                    default:
+                                        echo '<span class="badge text-bg-danger">status tidak dikenal</span>';
+                                        break;
+                                }
+                                ?>
                         </tr>
                     <?php } ?>
                 </tbody>

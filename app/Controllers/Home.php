@@ -111,24 +111,24 @@ class Home extends BaseController
         if ($data == null) {
             echo "data tidak ditemukan";
         } else {
-            if ($data['stage'] == 0) {
-                return view('UploadBuktiTf', $data);
-            } elseif ($data['stage'] == 1) {
-                $content = array(
-                    'content' => view('BuktiTfSukses'),
-                    'judul' => 'Bukti Tranfer Berhasil Diupload'
-                );
-                return view('Notif', $content);
-            } elseif ($data['stage'] == 2) {
-                $content = array(
-                    'content' => view('Verified'),
-                    'judul' => 'Pendaftaran dan pembayaran diverifikas'
-                );
-                return view('Notif', $content);
-            } elseif ($data['stage'] == 3) {
-                $this->coba();
-            } else {
-                echo "Data tidak ditemukan, anda siapa?";
+            switch ($data['stage']) {
+                case 0:
+                    return view('UploadBuktiTf', $data);
+                case 1:
+                    return view('Notif', [
+                        'content' => view('BuktiTfSukses'),
+                        'judul' => 'Bukti Transfer Berhasil Diupload'
+                    ]);
+                case 2:
+                    return view('Notif', [
+                        'content' => view('Verified'),
+                        'judul' => 'Pendaftaran dan pembayaran diverifikasi'
+                    ]);
+                case 3:
+                    $this->coba();
+                    break;
+                default:
+                    echo "Data tidak ditemukan, anda siapa?";
             }
         }
     }
@@ -231,25 +231,33 @@ class Home extends BaseController
     {
         $siswa_0 = $this->siswa->where('id', $id)->first();
         $siswa_1 = array(
-            'prov1' => $this->getRegionName('t_provinsi',$siswa_0['prov1']),
-            'kabko1' => $this->getRegionName('t_kota',$siswa_0['kabko1']),
-            'kec1' => $this->getRegionName('t_kecamatan',$siswa_0['kec1']),
-            'kelurahan1' => $this->getRegionName('t_kelurahan',$siswa_0['kelurahan1']),
-            'prov2' => $this->getRegionName('t_provinsi',$siswa_0['prov2']),
-            'kabko2' => $this->getRegionName('t_kota',$siswa_0['kabko2']),
-            'kec2' => $this->getRegionName('t_kecamatan',$siswa_0['kec2']),
-            'kelurahan2' => $this->getRegionName('t_kelurahan',$siswa_0['kelurahan2']),
+            'prov1' => $this->getRegionName('t_provinsi', $siswa_0['prov1']),
+            'kabko1' => $this->getRegionName('t_kota', $siswa_0['kabko1']),
+            'kec1' => $this->getRegionName('t_kecamatan', $siswa_0['kec1']),
+            'kelurahan1' => $this->getRegionName('t_kelurahan', $siswa_0['kelurahan1']),
+            'prov2' => $this->getRegionName('t_provinsi', $siswa_0['prov2']),
+            'kabko2' => $this->getRegionName('t_kota', $siswa_0['kabko2']),
+            'kec2' => $this->getRegionName('t_kecamatan', $siswa_0['kec2']),
+            'kelurahan2' => $this->getRegionName('t_kelurahan', $siswa_0['kelurahan2']),
         );
-        $siswa = array_replace($siswa_0,$siswa_1);
-        d($siswa);
+        $siswa = array_replace($siswa_0, $siswa_1);
+        // d($siswa);
 
-        $data = array('siswa'=>$siswa);
+        $data = array('siswa' => $siswa);
 
         $content = array(
             'content' => view('admin/detail_siswa', $data),
             'judul' => ' Dashboard Admin'
         );
         return view('admin/template', $content);
+    }
+
+    public function verifikasiBuktiTranfer()
+    {
+        $id = $this->request->getPost('id');
+
+        $this->siswa->where('id', $id)->set('stage', 2)->update();
+        return redirect()->to(previous_url());
     }
 
     public function logout()
@@ -303,9 +311,9 @@ class Home extends BaseController
             ->select('nama')
             ->where('id', $id)
             ->get();
-    
+
         $result = $query->getRow();
-    
+
         if ($result) {
             return $result->nama;
         } else {

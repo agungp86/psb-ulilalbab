@@ -11,6 +11,8 @@ $routes->get('/', 'Home::index');
 $routes->get('/adminsmpit', 'Home::Admin');
 $routes->post('/login', 'Home::AdminLogin');
 $routes->get('/detail_siswa/(:num)', 'Home::Detail/$1');
+$routes->post('/verifikasiTf', 'Home::verifikasiBuktiTranfer');
+
 
 
 // route siswa 
