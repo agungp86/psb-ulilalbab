@@ -21,3 +21,5 @@ $routes->post('/postReg',           'Home::formPost');
 $routes->post('/cekRegistrasi',     'Home::checkRegistrasi');
 $routes->post('/uploadBuktiTf',     'Home::BuktiTf');
 $routes->get('/Prov',               'Home::getProvinsi');
+$routes->get('/jalur',               'Home::getJalur');
+$routes->get('/tahun',               'Home::getTahun');

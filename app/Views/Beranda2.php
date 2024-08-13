@@ -34,7 +34,8 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="<?php echo base_url('registrasiBaru')?>">Daftar</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Cek Status</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#signup">Brosur</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#signup">Petunjuk Pendaftaran</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://smpit.ulilalbabkra.sch.id">Profil Pesantren</a></li>
                 </ul>
             </div>
         </div>

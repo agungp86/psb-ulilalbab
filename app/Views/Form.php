@@ -20,73 +20,91 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 mb-2">
                             <label class="form-label" for="nama">Nama Lengkap:</label>
-                            <input type="text" class="form-control" id="nama" name="nama" placeholder="nama" required>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" required>
                         </div>
 
-                        <div class="col-lg-3">
-                            <label class="form-label" for="gender">Jenis Kelamin:</label>
-                            <select class="form-select" name="jk" aria-label="Default select example">
-                                <option value="Laki-laki">Laki-laki</option>
-                                <option value="Perempuan">Perempuan</option>
-                            </select>
+                        <div class="col-lg-3 mb-2">
+                            <label class="form-label" for="gender">Jenis Kelamin:</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="jk" id="laki-laki" value="Laki-laki" required>
+                                <label class="form-check-label" for="laki-laki">Laki-laki</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="jk" id="perempuan" value="Perempuan">
+                                <label class="form-check-label" for="perempuan">Perempuan</label>
+                            </div>
+
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 mb-2">
                             <label class="form-label" for="jalur">Jalur Pendaftaran</label>
-                            <select class="form-select" name="jalur" aria-label="Default select example">
-                                <option value="Reguler">Reguler</option>
-                                <option value="Prestasi">Prestasi</option>
+                            <select class="form-select" name="jalur" aria-label="Default select example" required>
+                                <option value="">Pilih Jalur ...</option>
+                                <?php $jalur = (array) $jalur;
+                                foreach ($jalur as $key) { ?>
+                                <option value="<?= $key['nama']?>"><?= $key['nama']?></option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-5">
+                        <div class="col-lg-4 mb-2">
                             <label class="form-label" for="tempat_lahir">Tempat Lahir:</label>
                             <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="tempat lahir" required>
                         </div>
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-4 mb-2">
                             <label class="form-label" for="tanggal_lahir">Tanggal Lahir:</label>
                             <input type="date" id="tanggal_lahir" class="form-control" name="tanggal_lahir" required>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 mb-2">
                             <label class="form-label" for="nomor_identitas">NISN</label>
                             <input type="text" class="form-control" id="nomor_identitas" name="nomor_identitas" placeholder="NISN" required>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-12 mb-2">
+                        <label class="form-label" for="jalur">Calon Santri Baru untuk Tahun Ajaran</label>
+                            <select class="form-select" name="thn_ajar" aria-label="Default select example" required>
+                                <option value="">Tahun Ajar ...</option>
+                                <?php $tahunajar = (array) $tahunajar;
+                                foreach ($tahunajar as $key) { ?>
+                                <option value="<?= $key['nama']?>"><?= $key['nama']?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 mb-2">
                             <label class="form-label" for="nama_orang_tua">Nama Orang Tua:</label>
                             <input type="text" class="form-control" id="nama_orang_tua" name="nama_orang_tua" placeholder="nama orang tua" required>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 mb-2">
                             <label class="form-label" for="telepon_orang_tua">Nomor Telepon Orang Tua:</label>
                             <input type="tel" id="telepon_orang_tua" class="form-control" name="telepon_orang_tua" placeholder="+62" required>
                         </div>
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 mb-2">
                             <label class="form-label" for="alamat">Alamat Rumah :</label>
                             <input type="text" class="form-control" name="alamat" id="" placeholder="RT RW Jalan Blok No">
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 mb-2">
                             <label class="form-labe"> Provinsi </label>
                             <select class="form-select" name="provinsi_siswa" id="select2-provinsi"></select>
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 mb-2">
                             <label class="form-labe"> Kabupaten </label>
                             <select class="form-select" name="kabupaten_siswa" id="select2-kabupaten"></select>
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 mb-2">
                             <label class="form-labe"> Kecamatan </label>
                             <select class="form-select" name="kecamatan_siswa" id="select2-kecamatan"></select>
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 mb-2">
                             <label class="form-labe"> Kelurahan / Desa</label>
                             <select class="form-select" name="kelurahan_siswa" id="select2-kelurahan"></select>
                         </div>

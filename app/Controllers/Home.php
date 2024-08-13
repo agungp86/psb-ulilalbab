@@ -32,7 +32,10 @@ class Home extends BaseController
 
     function signUp()
     {
-        return view('Form');
+        $data = array(
+            'tahunajar' => $this->getTahun(),
+            'jalur'     => $this->getJalur());
+        return view('Form',$data);
     }
 
     function formPost()
@@ -49,6 +52,7 @@ class Home extends BaseController
             'telp_ortu' => $data['telepon_orang_tua'],
             'prov1' => $data['provinsi_siswa'],
             'kabko1' => $data['kabupaten_siswa'],
+            'tahunajar' => $data['thn_ajar'],
             'kec1' => $data['kecamatan_siswa'],
             'kelurahan1' => $data['kelurahan_siswa'],
             'detail_alamat' => $data['alamat'],
@@ -285,6 +289,31 @@ class Home extends BaseController
     function getProvinsi()
     {
         return json_encode($this->provinsi->findAll());
+    }
+
+    function getJalur()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->table('jalur')
+        ->select('nama')
+        ->select('id')
+            ->where('enable', 1)
+            ->get();
+
+            $result = $query->getResultArray();
+            return $result;
+    }
+
+    function getTahun() {
+        $db = \Config\Database::connect();
+        $query = $db->table('tahunajar')
+            ->select('nama')
+            ->select('id')
+            ->where('enable', 1)
+            ->get();
+
+            $result = $query->getResultArray();
+            return $result;
     }
 
     function prov($id)

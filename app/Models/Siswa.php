@@ -37,6 +37,7 @@ class Siswa extends Model
         'k_pelajar',
         'foto',
         'info',
+        'tahunajar',
         'approve',
         'stage',
         'bukti_tf',
