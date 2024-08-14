@@ -1,13 +1,22 @@
 <div class="container mt-3 justify-content-center">
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            Dashboard Admin
-            <button class="btn btn-outline-secondary">
-                Log Out
-                <i class="fa-solid fa-right-from-bracket"></i>
-            </button class="btn btn-outlinesecondary">
+            <ul class="nav nav-pills card-header-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="<?php echo base_url('dashboard')?>">Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo base_url('form')?>">Form</a>
+                </li>
+            </ul>
+            <form action="<?= base_url('logout')?>" method="get">
+                <button type="submit" class="btn btn-outline-secondary">
+                    Log Out
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button class="btn btn-outlinesecondary">
+            </form>
         </div>
-        <div class="card p-3">
+        <div class=" card-body p-3">
             <table class="table table-striped table-sm ">
                 <thead>
                     <tr>

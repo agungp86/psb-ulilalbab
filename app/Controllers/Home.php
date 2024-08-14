@@ -34,8 +34,9 @@ class Home extends BaseController
     {
         $data = array(
             'tahunajar' => $this->getTahun(),
-            'jalur'     => $this->getJalur());
-        return view('Form',$data);
+            'jalur'     => $this->getJalur()
+        );
+        return view('Form', $data);
     }
 
     function formPost()
@@ -209,15 +210,8 @@ class Home extends BaseController
                         'username' => $username,
                         'isLoggedIn' => true
                     ]);
-                    $data = array(
-                        'session' => session()->get(),
-                        'record' => $this->siswa->findAll()
-                    );
-                    $content = array(
-                        'content' => view('admin/dashboard', $data),
-                        'judul' => ' Dashboard Admin'
-                    );
-                    return view('admin/template', $content);
+
+                    return $this->dashboard();
                 } else {
                     // Set an error message
                     session()->setFlashdata('error', 'Invalid login credentials.');
@@ -228,6 +222,46 @@ class Home extends BaseController
 
         // $this->Admin(); 
         echo "admin gagal login";
+    }
+
+    function dashboard()
+    {
+        $data = array(
+            // 'session' => session()->get(),
+            'record' => $this->siswa->findAll()
+        );
+        $content = array(
+            'content' => view('admin/dashboard', $data),
+            'judul' => ' Dashboard Admin'
+        );
+        return view('admin/template', $content);
+    }
+
+
+    public function formControl()
+    {
+        $data = array(
+            'tahun' => $this->getAllForm('tahunajar'),
+            'jalur' => $this->getAllForm('jalur')
+        );
+        $content = array(
+            'content' => view('admin/form', $data),
+            'judul' => ' Dashboard Admin'
+        );
+        return view('admin/template', $content);
+    }
+
+    public function formupdate($table = null)
+    {
+        $nama = $this->request->getPost('nama');
+        $id = $this->request->getPost('id');
+        if ($table == "jalur") {
+            $this->getJalur($id, $nama);
+            return redirect()->to(previous_url());
+        } elseif ($table == "tahun") {
+            $this->getTahun($id, $nama);
+            return redirect()->to(previous_url());
+        }
     }
 
     //detail siswa per id
@@ -268,7 +302,7 @@ class Home extends BaseController
     {
         // Destroy the session
         session()->destroy();
-        return redirect()->to('/login');
+        return redirect()->to('/adminsmpit');
     }
 
     function coba()
@@ -291,29 +325,79 @@ class Home extends BaseController
         return json_encode($this->provinsi->findAll());
     }
 
-    function getJalur()
+    public function updateStatus($table, $id, $valeu)
     {
         $db = \Config\Database::connect();
-        $query = $db->table('jalur')
-        ->select('nama')
-        ->select('id')
-            ->where('enable', 1)
-            ->get();
+        if ($table == 'tahun') {
+            $query = $db->table('tahunajar')
+                ->where('id', $id)
+                ->set('enable', $valeu)
+                ->update();
 
-            $result = $query->getResultArray();
-            return $result;
+            return redirect()->to(previous_url());
+        } elseif ($table == 'jalur') {
+            $query = $db->table('jalur')
+                ->where('id', $id)
+                ->set('enable', $valeu)
+                ->update();
+
+            return redirect()->to(previous_url());
+        } else {
+            return redirect()->to(previous_url());
+        }
     }
 
-    function getTahun() {
+    function getJalur($id = null, $nama = null)
+    {
         $db = \Config\Database::connect();
-        $query = $db->table('tahunajar')
-            ->select('nama')
-            ->select('id')
-            ->where('enable', 1)
-            ->get();
+        if ($id == null) {
+            $query = $db->table('jalur')
+                ->select('nama')
+                ->select('id')
+                ->where('enable', 1)
+                ->get();
 
             $result = $query->getResultArray();
             return $result;
+        } elseif ($id <> null && $nama <> null) {
+            $query = $db->table('jalur')
+                ->where('id', $id)
+                ->set('nama', $nama)
+                ->update();
+        }
+    }
+
+    function getTahun($id = null, $nama = null)
+    {
+        $db = \Config\Database::connect();
+        if ($id == null) {
+            $query = $db->table('tahunajar')
+                ->select('nama')
+                ->select('id')
+                ->where('enable', 1)
+                ->get();
+
+            $result = $query->getResultArray();
+            return $result;
+        } elseif ($id <> null && $nama <> null) {
+            $query = $db->table('tahunajar')
+                ->where('id', $id)
+                ->set('nama', $nama)
+                ->update();
+        }
+    }
+
+    function getAllForm($table = null)
+    {
+        if ($table == 'jalur' || $table == 'tahunajar') {
+            $db = \Config\Database::connect();
+            $query = $db->table($table)
+                ->select('*')
+                ->get();
+
+            $result = $query->getResultArray();
+            return $result;
+        }
     }
 
     function prov($id)
