@@ -109,7 +109,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <p class="fw-medium">Tahun Ajar</p>
+                            <p class="fw-medium">Tahun Ajaran</p>
                         </div>
                         <div class="col-md-9">
                             <p class="text-start">: <?= $siswa['tahunajar'] ?></p>

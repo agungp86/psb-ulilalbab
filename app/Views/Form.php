@@ -20,12 +20,12 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-5 mb-2">
+                        <div class="col-lg-8 mb-2">
                             <label class="form-label" for="nama">Nama Lengkap:</label>
                             <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" required>
                         </div>
 
-                        <div class="col-lg-3 mb-2">
+                        <div class="col-lg-4 mb-2">
                             <label class="form-label" for="gender">Jenis Kelamin:</label><br>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="jk" id="laki-laki" value="Laki-laki" required>
@@ -36,16 +36,6 @@
                                 <label class="form-check-label" for="perempuan">Perempuan</label>
                             </div>
 
-                        </div>
-                        <div class="col-lg-4 mb-2">
-                            <label class="form-label" for="jalur">Jalur Pendaftaran</label>
-                            <select class="form-select" name="jalur" aria-label="Default select example" required>
-                                <option value="">Pilih Jalur ...</option>
-                                <?php $jalur = (array) $jalur;
-                                foreach ($jalur as $key) { ?>
-                                <option value="<?= $key['nama']?>"><?= $key['nama']?></option>
-                                <?php } ?>
-                            </select>
                         </div>
                     </div>
 
@@ -62,16 +52,6 @@
                         <div class="col-lg-4 mb-2">
                             <label class="form-label" for="nomor_identitas">NISN</label>
                             <input type="text" class="form-control" id="nomor_identitas" name="nomor_identitas" placeholder="NISN" required>
-                        </div>
-                        <div class="col-lg-12 mb-2">
-                        <label class="form-label" for="jalur">Calon Santri Baru untuk Tahun Ajaran</label>
-                            <select class="form-select" name="thn_ajar" aria-label="Default select example" required>
-                                <option value="">Tahun Ajar ...</option>
-                                <?php $tahunajar = (array) $tahunajar;
-                                foreach ($tahunajar as $key) { ?>
-                                <option value="<?= $key['nama']?>"><?= $key['nama']?></option>
-                                <?php } ?>
-                            </select>
                         </div>
                         <div class="col-lg-6 mb-2">
                             <label class="form-label" for="nama_orang_tua">Nama Orang Tua:</label>
@@ -143,6 +123,35 @@
                         <div class="col-lg-6">
                             <label class="form-label" for="kelurahan_sekolah">Kelurahan / Desa Asal Sekolah:</label>
                             <select class="form-select" id="kelurahan_sekolah" name="kelurahan_sekolah" required></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h3>Jalur Pendaftaran</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6 mb-2">
+                            <label class="form-label" for="jalur">Jalur Pendaftaran</label>
+                            <select class="form-select" name="jalur" aria-label="Default select example" required>
+                                <option value="">Pilih Jalur ...</option>
+                                <?php $jalur = (array) $jalur;
+                                foreach ($jalur as $key) { ?>
+                                    <option value="<?= $key['nama'] ?>"><?= $key['nama'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                            <label class="form-label" for="jalur">Calon Santri Baru untuk Tahun Ajaran</label>
+                            <select class="form-select" name="thn_ajar" aria-label="Default select example" required>
+                                <option value="">Tahun Ajaran ...</option>
+                                <?php $tahunajar = (array) $tahunajar;
+                                foreach ($tahunajar as $key) { ?>
+                                    <option value="<?= $key['nama'] ?>"><?= $key['nama'] ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                 </div>

@@ -12,3 +12,4 @@ in APPPATH/Controllers/Home.php on line 272.
  7 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
  8 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
 INFO - 2024-08-15 03:46:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 05:31:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
