@@ -109,13 +109,13 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <p class="fw-medium">Tahun Ajaran</p>
+                            <p class="fw-medium">Tahun Ajar</p>
                         </div>
                         <div class="col-md-9">
                             <p class="text-start">: <?= $siswa['tahunajar'] ?></p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row text-bg-light">
                         <div class="col-md-3">
                             <p class="fw-medium">Nomor Registrasi</p>
                         </div>
@@ -145,7 +145,8 @@
                     $status = 'light';
                     break;
             } ?>
-            <div class="card border-<?php echo $status ?> mb-3"
+            <div class="card border-<?php echo $status ?> mb-3">
+                <div class="card-header text-bg-<?php echo $status ?>">Status Pembayaran</div>
                 <div class="card-body">
                     <?php if ($siswa['stage'] == 1) { ?>
                         <strong class="card-title">Konfirmasi bukti tranfer</strong>
