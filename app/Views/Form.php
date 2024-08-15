@@ -52,7 +52,7 @@
                     <div class="row">
                         <div class="col-lg-4 mb-2">
                             <label class="form-label" for="tempat_lahir">Tempat Lahir:</label>
-                            <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="tempat lahir" required>
+                            <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir" required>
                         </div>
 
                         <div class="col-lg-4 mb-2">
@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-lg-6 mb-2">
                             <label class="form-label" for="nama_orang_tua">Nama Orang Tua:</label>
-                            <input type="text" class="form-control" id="nama_orang_tua" name="nama_orang_tua" placeholder="nama orang tua" required>
+                            <input type="text" class="form-control" id="nama_orang_tua" name="nama_orang_tua" placeholder="Nama Orang Tua" required>
                         </div>
                         <div class="col-lg-6 mb-2">
                             <label class="form-label" for="telepon_orang_tua">Nomor Telepon Orang Tua:</label>
