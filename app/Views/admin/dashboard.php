@@ -32,7 +32,7 @@
                     <?php foreach ($record as $k) { ?>
                         <tr>
                             <td><?= $k['nama'] ?></td>
-                            <td><?=  (new \DateTime($k['created_at']))->format('d-m-y H:i')?></td>
+                            <td><?= (new \DateTime($k['created_at']))->format('d-m-y H:i')?></td>
                             <td><?= $k['nama_sekolah'] ?></td>
                             <td><?= $k['jalur'] ?></td>
                             <td>

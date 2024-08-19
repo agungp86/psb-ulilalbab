@@ -124,6 +124,19 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-6 d-grid gap-2">
+                            <button type="button" class="btn btn-outline-primary">Edit Data Pendaftaran</button>
+                        </div>
+                        <div class="col-md-6 d-grid gap-2">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Hapus Data Pendaftaran
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-3 col-sm-12">
@@ -165,7 +178,6 @@
                         <p class="card-text">Peserta belum mengirimkan bukti transfer</p>
                     <?php } ?>
                     <?php ?>
-
                 </div>
             </div>
         </div>
@@ -174,7 +186,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Bukti Tranfer</h1>
@@ -192,6 +204,24 @@
                     <input type="hidden" name="id" value="<?= $siswa['id'] ?>">
                     <button type="submit" class="btn btn-primary" id="submitButton" disabled>Konfirmasi</button>
                 </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-danger">
+            <div class="modal-header outline-danger">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Data Pendaftaran</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
