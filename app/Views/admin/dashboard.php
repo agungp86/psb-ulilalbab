@@ -21,7 +21,7 @@
                 <thead>
                     <tr>
                         <td>Nama</td>
-                        <td>Orangtua</td>
+                        <td>Waktu Pengisian Formulir</td>
                         <td>Asal Sekolah</td>
                         <td>Jalur</td>
                         <td>Detail</td>
@@ -32,7 +32,7 @@
                     <?php foreach ($record as $k) { ?>
                         <tr>
                             <td><?= $k['nama'] ?></td>
-                            <td><?= $k['ortu'] ?></td>
+                            <td><?=  (new \DateTime($k['created_at']))->format('d-m-y H:i')?></td>
                             <td><?= $k['nama_sekolah'] ?></td>
                             <td><?= $k['jalur'] ?></td>
                             <td>

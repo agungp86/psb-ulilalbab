@@ -230,6 +230,11 @@ class Home extends BaseController
             // 'session' => session()->get(),
             'record' => $this->siswa->findAll()
         );
+
+        foreach ($data['record'] as &$key) {
+            $key['created_at']=$this->ubahJam($key['created_at']);
+        }
+
         $content = array(
             'content' => view('admin/dashboard', $data),
             'judul' => ' Dashboard Admin'
@@ -387,6 +392,22 @@ class Home extends BaseController
         }
     }
 
+    //Ubah jam
+    public function ubahJam($gmtTime)
+    {
+        //$gmtTime = '2024-08-19 13:26:21'; // The original GMT timestamp
+
+        // Create a DateTime object from the GMT timestamp
+        $dateTime = new DateTime($gmtTime, new \DateTimeZone('GMT'));
+
+        // Set the timezone to GMT+7
+        $dateTime->setTimezone(new \DateTimeZone('Asia/Bangkok'));
+
+        // Format the date to your desired format
+        $localTime = $dateTime->format('Y-m-d H:i:s');
+
+        return $localTime; // This will output the time in GMT+7
+    }
     function getAllForm($table = null)
     {
         if ($table == 'jalur' || $table == 'tahunajar') {
