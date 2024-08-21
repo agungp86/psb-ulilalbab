@@ -49,10 +49,9 @@
                             <label class="form-label" for="tanggal_lahir">Tanggal Lahir:</label>
                             <input type="date" id="tanggal_lahir" class="form-control" name="tanggal_lahir" required>
                         </div>
-                        <div class="col-lg-4 mb-2">
-                            <label class="form-label" for="nomor_identitas">NISN</label>
-                            <input type="text" class="form-control" id="nomor_identitas" name="nomor_identitas" placeholder="NISN" required>
-                        </div>
+                        <!-- <div class="col-lg-4 mb-2"> -->
+                            <input type="hidden" class="form-control" id="nomor_identitas" name="nomor_identitas" placeholder="NISN" value="123123">
+                        <!-- </div> -->
                         <div class="col-lg-6 mb-2">
                             <label class="form-label" for="nama_orang_tua">Nama Orang Tua:</label>
                             <input type="text" class="form-control" id="nama_orang_tua" name="nama_orang_tua" placeholder="Nama Orang Tua" required>
