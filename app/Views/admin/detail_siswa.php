@@ -221,7 +221,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <form>
+                    <label for="textInput">Ketik "bismillah" untuk menghapus data</label>
+                    <input type="text" class="form-control" id="textInput" onkeyup="checkInput()" />
+                    <div class="d-grid gap-2 mt-1">
+                        <input type="submit" class="btn btn-danger" id="submitHapus" value="Submit" disabled />
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -234,4 +240,15 @@
     document.getElementById('termsCheckbox').addEventListener('change', function() {
         document.getElementById('submitButton').disabled = !this.checked;
     });
+
+    function checkInput() {
+            const inputText = document.getElementById("textInput").value;
+            const submitButton = document.getElementById("submitHapus");
+
+            if (inputText.toLowerCase() === "bismillah") {
+                submitButton.disabled = false;
+            } else {
+                submitButton.disabled = true;
+            }
+        }
 </script>
