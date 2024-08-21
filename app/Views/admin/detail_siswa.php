@@ -28,99 +28,101 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <p class="fw-medium">Nama</p>
+                            <div class="fw-medium">Nama</div>
                         </div>
                         <div class="col-md-9">
-                            <p class="text-start">: <?= $siswa['nama'] ?></p>
+                            <div class="text-start">: <?= $siswa['nama'] ?></div>
                         </div>
                     </div>
-                    <div class="row text-bg-light">
+                    <div class="row ">
                         <div class="col-md-3">
-                            <p class="fw-medium">Jenis kelamin</p>
+                            <div class="fw-medium">Jenis kelamin</div>
                         </div>
                         <div class="col-md-9">
-                            <p class="text-start">: <?= $siswa['jk'] ?></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <p class="fw-medium">Tempat tanggal lahir</p>
-                        </div>
-                        <div class="col-md-9">
-                            <p class="text-start">: <?= $siswa['tempat_lahir'] ?>, <?= $siswa['tgl_lahir'] ?></p>
-                        </div>
-                    </div>
-                    <div class="row text-bg-light">
-                        <div class="col-md-3">
-                            <p class="fw-medium">NISN</p>
-                        </div>
-                        <div class="col-md-9">
-                            <p class="text-start">: <?= $siswa['nisn'] ?></p>
+                            <div class="text-start">: <?= $siswa['jk'] ?></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <p class="fw-medium">Nama Orangtua</p>
+                            <div class="fw-medium">Tempat tanggal lahir</div>
                         </div>
                         <div class="col-md-9">
-                            <p class="text-start">: <?= $siswa['ortu'] ?></p>
+                            <div class="text-start">: <?= $siswa['tempat_lahir'] ?>, <?= $siswa['tgl_lahir'] ?></div>
                         </div>
                     </div>
-                    <div class="row text-bg-light">
+                    <!-- <div class="row ">
                         <div class="col-md-3">
-                            <p class="fw-medium">Alamat</p>
+                            <div class="fw-medium">NISN</div>
                         </div>
                         <div class="col-md-9">
-                            <p class="text-start">: <?= $siswa['detail_alamat'] ?><br>
-                                <?= $siswa['kelurahan1'] ?>, <?= $siswa['kec1'] ?>, <?= $siswa['kabko1'] ?>, <?= $siswa['prov1'] ?></p>
+                            <div class="text-start">: <?= $siswa['nisn'] ?></div>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="fw-medium">Nama Orangtua</div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="text-start">: <?= $siswa['ortu'] ?></div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-3">
+                            <div class="fw-medium">Alamat</div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="text-start">: <?= $siswa['detail_alamat'] ?><br>
+                                <?= $siswa['kelurahan1'] ?>, <?= $siswa['kec1'] ?>, <?= $siswa['kabko1'] ?>, <?= $siswa['prov1'] ?></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <p class="fw-medium">Telepon</p>
+                            <div class="fw-medium">Telepon</div>
                         </div>
                         <div class="col-md-9">
-                            <p class="text-start">: <?= $siswa['telp_ortu'] ?></p>
+                            <div class="text-start">: <?= $siswa['telp_ortu'] ?></div>
                         </div>
                     </div>
-                    <div class="row text-bg-light">
+                    <hr>
+                    <div class="row">
                         <div class="col-md-3">
-                            <p class="fw-medium">Jalur Pendaftaran</p>
+                            <div class="fw-medium">Sekolah Asal</div>
                         </div>
                         <div class="col-md-9">
-                            <p class="text-start">: <?= $siswa['jalur'] ?></p>
+                            <div class="text-start">: <?= $siswa['nama_sekolah'] ?></div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-3">
+                            <div class="fw-medium">Alamat Sekolah</div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="text-start">: <?= $siswa['kelurahan2'] ?>, <?= $siswa['kec2'] ?>, <?= $siswa['kabko2'] ?>, <?= $siswa['prov2'] ?></div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row ">
+                        <div class="col-md-3">
+                            <div class="fw-medium">Jalur Pendaftaran</div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="text-start">: <?= $siswa['jalur'] ?></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <p class="fw-medium">Sekolah Asal</p>
+                            <div class="fw-medium">Tahun Ajaran</div>
                         </div>
                         <div class="col-md-9">
-                            <p class="text-start">: <?= $siswa['nama_sekolah'] ?></p>
+                            <div class="text-start">: <?= $siswa['tahunajar'] ?></div>
                         </div>
                     </div>
-                    <div class="row text-bg-light">
+                    <div class="row ">
                         <div class="col-md-3">
-                            <p class="fw-medium">Alamat Sekolah</p>
+                            <div class="fw-medium">Nomor Registrasi</div>
                         </div>
                         <div class="col-md-9">
-                            <p class="text-start">: <?= $siswa['kelurahan2'] ?>, <?= $siswa['kec2'] ?>, <?= $siswa['kabko2'] ?>, <?= $siswa['prov2'] ?></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <p class="fw-medium">Tahun Ajaran</p>
-                        </div>
-                        <div class="col-md-9">
-                            <p class="text-start">: <?= $siswa['tahunajar'] ?></p>
-                        </div>
-                    </div>
-                    <div class="row text-bg-light">
-                        <div class="col-md-3">
-                            <p class="fw-medium">Nomor Registrasi</p>
-                        </div>
-                        <div class="col-md-9">
-                            <p class="text-start">: <?= $siswa['noreg'] ?></p>
+                            <div class="text-start">: <?= $siswa['noreg'] ?></div>
                         </div>
                     </div>
                 </div>
