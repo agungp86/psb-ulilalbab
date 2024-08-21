@@ -114,7 +114,13 @@ class Home extends BaseController
         $noreg = $this->request->getPost('noreg');
         $data = $this->siswa->where('noreg', $noreg)->first();
         if ($data == null) {
-            echo "data tidak ditemukan";
+            $content = array(
+                'content' => '<div class="alert alert-danger text-center m-2" role="alert">
+                                Data Pendaftaran Tidak Ditemukan
+                                </div>',
+                'judul' => ' Dashboard Admin'
+            );
+            return view('admin/template', $content);
         } else {
             switch ($data['stage']) {
                 case 0:
@@ -232,7 +238,7 @@ class Home extends BaseController
         );
 
         foreach ($data['record'] as &$key) {
-            $key['created_at']=$this->ubahJam($key['created_at']);
+            $key['created_at'] = $this->ubahJam($key['created_at']);
         }
 
         $content = array(
@@ -242,6 +248,13 @@ class Home extends BaseController
         return view('admin/template', $content);
     }
 
+    public function hapusPendaftaranSiswa()
+    {
+        $id = $this->request->getPost('id');
+        $this->siswa->delete($id);
+
+        return redirect()->to(previous_url());
+    }
 
     public function formControl()
     {
@@ -273,26 +286,37 @@ class Home extends BaseController
     public function Detail($id)
     {
         $siswa_0 = $this->siswa->where('id', $id)->first();
-        $siswa_1 = array(
-            'prov1' => $this->getRegionName('t_provinsi', $siswa_0['prov1']),
-            'kabko1' => $this->getRegionName('t_kota', $siswa_0['kabko1']),
-            'kec1' => $this->getRegionName('t_kecamatan', $siswa_0['kec1']),
-            'kelurahan1' => $this->getRegionName('t_kelurahan', $siswa_0['kelurahan1']),
-            'prov2' => $this->getRegionName('t_provinsi', $siswa_0['prov2']),
-            'kabko2' => $this->getRegionName('t_kota', $siswa_0['kabko2']),
-            'kec2' => $this->getRegionName('t_kecamatan', $siswa_0['kec2']),
-            'kelurahan2' => $this->getRegionName('t_kelurahan', $siswa_0['kelurahan2']),
-        );
-        $siswa = array_replace($siswa_0, $siswa_1);
-        // d($siswa);
 
-        $data = array('siswa' => $siswa);
+        if ($siswa_0) {
+            $siswa_1 = array(
+                'prov1' => $this->getRegionName('t_provinsi', $siswa_0['prov1']),
+                'kabko1' => $this->getRegionName('t_kota', $siswa_0['kabko1']),
+                'kec1' => $this->getRegionName('t_kecamatan', $siswa_0['kec1']),
+                'kelurahan1' => $this->getRegionName('t_kelurahan', $siswa_0['kelurahan1']),
+                'prov2' => $this->getRegionName('t_provinsi', $siswa_0['prov2']),
+                'kabko2' => $this->getRegionName('t_kota', $siswa_0['kabko2']),
+                'kec2' => $this->getRegionName('t_kecamatan', $siswa_0['kec2']),
+                'kelurahan2' => $this->getRegionName('t_kelurahan', $siswa_0['kelurahan2']),
+            );
+            $siswa = array_replace($siswa_0, $siswa_1);
+            // d($siswa);
 
-        $content = array(
-            'content' => view('admin/detail_siswa', $data),
-            'judul' => ' Dashboard Admin'
-        );
-        return view('admin/template', $content);
+            $data = array('siswa' => $siswa);
+
+            $content = array(
+                'content' => view('admin/detail_siswa', $data),
+                'judul' => ' Dashboard Admin'
+            );
+            return view('admin/template', $content);
+        } else {
+            $content = array(
+                'content' => '<div class="alert alert-danger text-center m-2" role="alert">
+                                Data Tidak Ditemukan
+                                </div>',
+                'judul' => ' Dashboard Admin'
+            );
+            return view('admin/template', $content);
+        }
     }
 
     public function verifikasiBuktiTranfer()

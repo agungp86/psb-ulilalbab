@@ -221,9 +221,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="post" action="<?php echo base_url('hapusPdftr')?>">
                     <label for="textInput">Ketik "bismillah" untuk menghapus data</label>
                     <input type="text" class="form-control" id="textInput" onkeyup="checkInput()" />
+                    <input type="hidden" name="id" value="<?= $siswa['id'] ?>">
                     <div class="d-grid gap-2 mt-1">
                         <input type="submit" class="btn btn-danger" id="submitHapus" value="Submit" disabled />
                     </div>

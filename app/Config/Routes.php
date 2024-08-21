@@ -19,6 +19,7 @@ $routes->get('/statustahun/(:num)/(:num)', 'Home::updateStatus/tahun/$1/$2');
 $routes->get('/statusjalur/(:num)/(:num)', 'Home::updateStatus/jalur/$1/$2');
 $routes->post('/updatetahun', 'Home::formupdate/tahun');
 $routes->post('/updatejalur', 'Home::formupdate/jalur');
+$routes->post('/hapusPdftr', 'Home::hapusPendaftaranSiswa');
 
 
 
