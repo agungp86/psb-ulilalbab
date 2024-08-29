@@ -1,0 +1,152 @@
+INFO - 2024-08-29 06:21:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-08-29 06:21:16 --> Error connecting to the database: mysqli_sql_exception: No such file or directory in /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:186
+Stack trace:
+#0 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(186): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'psb', 3306, '', 0)
+#1 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/BaseConnection.php(616): CodeIgniter\Database\BaseConnection->initialize()
+#3 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1636): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Controllers/Home.php(237): CodeIgniter\BaseModel->findAll()
+#7 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Controllers/Home.php(220): App\Controllers\Home->dashboard()
+#8 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/CodeIgniter.php(933): App\Controllers\Home->AdminLogin()
+#9 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#10 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Boot.php(325): CodeIgniter\CodeIgniter->run()
+#12 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/rewrite.php(44): require_once('/Users/galihagu...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No such file or directory in /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:231
+Stack trace:
+#0 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/BaseConnection.php(616): CodeIgniter\Database\BaseConnection->initialize()
+#2 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1636): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#5 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Controllers/Home.php(237): CodeIgniter\BaseModel->findAll()
+#6 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Controllers/Home.php(220): App\Controllers\Home->dashboard()
+#7 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/CodeIgniter.php(933): App\Controllers\Home->AdminLogin()
+#8 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#9 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/rewrite.php(44): require_once('/Users/galihagu...')
+#14 {main}
+CRITICAL - 2024-08-29 06:21:16 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No such file or directory
+[Method: POST, Route: login]
+in SYSTEMPATH/Database/BaseConnection.php on line 467.
+ 1 SYSTEMPATH/Database/BaseConnection.php(616): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1636): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `siswa`', [], false)
+ 3 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/Home.php(237): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH/Controllers/Home.php(220): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Home->AdminLogin()
+ 8 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
+INFO - 2024-08-29 06:21:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-08-29 06:21:23 --> Error connecting to the database: mysqli_sql_exception: No such file or directory in /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:186
+Stack trace:
+#0 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(186): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'psb', 3306, '', 0)
+#1 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/BaseConnection.php(616): CodeIgniter\Database\BaseConnection->initialize()
+#3 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1636): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Controllers/Home.php(237): CodeIgniter\BaseModel->findAll()
+#7 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Controllers/Home.php(220): App\Controllers\Home->dashboard()
+#8 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/CodeIgniter.php(933): App\Controllers\Home->AdminLogin()
+#9 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#10 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Boot.php(325): CodeIgniter\CodeIgniter->run()
+#12 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/rewrite.php(44): require_once('/Users/galihagu...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No such file or directory in /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:231
+Stack trace:
+#0 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/BaseConnection.php(616): CodeIgniter\Database\BaseConnection->initialize()
+#2 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1636): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#5 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Controllers/Home.php(237): CodeIgniter\BaseModel->findAll()
+#6 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Controllers/Home.php(220): App\Controllers\Home->dashboard()
+#7 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/CodeIgniter.php(933): App\Controllers\Home->AdminLogin()
+#8 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#9 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 /Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/codeigniter4/framework/system/rewrite.php(44): require_once('/Users/galihagu...')
+#14 {main}
+CRITICAL - 2024-08-29 06:21:23 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No such file or directory
+[Method: POST, Route: login]
+in SYSTEMPATH/Database/BaseConnection.php on line 467.
+ 1 SYSTEMPATH/Database/BaseConnection.php(616): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1636): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `siswa`', [], false)
+ 3 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/Home.php(237): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH/Controllers/Home.php(220): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Home->AdminLogin()
+ 8 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
+INFO - 2024-08-29 06:21:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-29 07:11:45 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/fromEdit.php"
+[Method: GET, Route: detail_siswa/59]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 41.
+ 1 SYSTEMPATH/View/View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/fromEdit.php')
+ 2 SYSTEMPATH/Common.php(1171): CodeIgniter\View\View->render('admin/fromEdit', [], true)
+ 3 APPPATH/Controllers/Home.php(306): view('admin/fromEdit')
+ 4 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Home->Detail('59')
+ 5 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
+CRITICAL - 2024-08-29 07:12:48 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/fromEdit.php"
+[Method: GET, Route: detail_siswa/59]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 41.
+ 1 SYSTEMPATH/View/View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/fromEdit.php')
+ 2 SYSTEMPATH/Common.php(1171): CodeIgniter\View\View->render('admin/fromEdit', [], true)
+ 3 APPPATH/Controllers/Home.php(306): view('admin/fromEdit')
+ 4 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Home->Detail('59')
+ 5 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
+CRITICAL - 2024-08-29 07:14:30 --> ErrorException: Undefined variable $jalur
+[Method: GET, Route: detail_siswa/59]
+in APPPATH/Views/admin/formEdit.php on line 127.
+ 1 APPPATH/Views/admin/formEdit.php(127): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $jalur', '/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Views/admin/formEdit.php', 127)
+ 2 SYSTEMPATH/View/View.php(234): include('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Views/admin/formEdit.php')
+ 3 SYSTEMPATH/View/View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1171): CodeIgniter\View\View->render('admin/formEdit', [], true)
+ 5 APPPATH/Controllers/Home.php(306): view('admin/formEdit')
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Home->Detail('59')
+ 7 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')

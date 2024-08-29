@@ -301,7 +301,10 @@ class Home extends BaseController
             $siswa = array_replace($siswa_0, $siswa_1);
             // d($siswa);
 
-            $data = array('siswa' => $siswa);
+            $data = array(
+                'siswa' => $siswa,
+                'form' => $this->formEdit()
+        );
 
             $content = array(
                 'content' => view('admin/detail_siswa', $data),
@@ -317,6 +320,15 @@ class Home extends BaseController
             );
             return view('admin/template', $content);
         }
+    }
+
+    function formEdit()
+    {
+        $data = array(
+            'tahunajar' => $this->getTahun(),
+            'jalur'     => $this->getJalur()
+        );
+        return view('admin/formEdit', $data);
     }
 
     public function verifikasiBuktiTranfer()

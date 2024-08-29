@@ -129,7 +129,7 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-md-6 d-grid gap-2">
-                            <button type="button" class="btn btn-outline-primary">Edit Data Pendaftaran</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalEdit" >Edit Data Pendaftaran</button>
                         </div>
                         <div class="col-md-6 d-grid gap-2">
                             <!-- Button trigger modal -->
@@ -235,6 +235,25 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="ModalEditLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalEditLabel">Edit Data Siswa</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <?= $form ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
