@@ -303,7 +303,7 @@ class Home extends BaseController
 
             $data = array(
                 'siswa' => $siswa,
-                'form' => $this->formEdit()
+                'form' => $this->formEdit($siswa)
         );
 
             $content = array(
@@ -322,11 +322,12 @@ class Home extends BaseController
         }
     }
 
-    function formEdit()
+    function formEdit($value)
     {
         $data = array(
             'tahunajar' => $this->getTahun(),
-            'jalur'     => $this->getJalur()
+            'jalur'     => $this->getJalur(),
+            'value'     => $value
         );
         return view('admin/formEdit', $data);
     }
@@ -366,20 +367,20 @@ class Home extends BaseController
         return json_encode($this->provinsi->findAll());
     }
 
-    public function updateStatus($table, $id, $valeu)
+    public function updateStatus($table, $id, $value)
     {
         $db = \Config\Database::connect();
         if ($table == 'tahun') {
             $query = $db->table('tahunajar')
                 ->where('id', $id)
-                ->set('enable', $valeu)
+                ->set('enable', $value)
                 ->update();
 
             return redirect()->to(previous_url());
         } elseif ($table == 'jalur') {
             $query = $db->table('jalur')
                 ->where('id', $id)
-                ->set('enable', $valeu)
+                ->set('enable', $value)
                 ->update();
 
             return redirect()->to(previous_url());
