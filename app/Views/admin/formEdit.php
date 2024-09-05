@@ -1,6 +1,7 @@
 
     <div class="container mt-2 ">
-        <form id="registrationForm" method="post" action="<?php echo base_url('postReg') ?>">
+        <form id="registrationForm" method="post" action="<?php echo base_url('postEdit') ?>">
+            <input type="hidden" name="id" value="<?=$value['id']?>">
             <div class="card border-secondary  mb-3">
                 <div class="card-body">
                     <div class="row">
@@ -12,11 +13,11 @@
                         <div class="col-lg-4 mb-2">
                             <label class="form-label" for="gender">Jenis Kelamin:</label><br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jk" id="laki-laki" value="Laki-laki">
+                                <input class="form-check-input" type="radio" name="jk" id="laki-laki" value="Laki-laki" <?= $value['jk'] == 'Laki-laki' ? 'checked' : ''; ?>>
                                 <label class="form-check-label" for="laki-laki">Laki-laki</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jk" id="perempuan" value="Perempuan">
+                                <input class="form-check-input" type="radio" name="jk" id="perempuan" value="Perempuan" <?= $value['jk'] == 'Perempuan' ? 'checked' : ''; ?>>
                                 <label class="form-check-label" for="perempuan">Perempuan</label>
                             </div>
 
@@ -51,21 +52,25 @@
 
                         <div class="col-lg-6 mb-2">
                             <label class="form-labe"> Provinsi </label>
+                            <small class="badge text-bg-secondary"><?= $value['prov1']?></small>
                             <select class="form-select form-select-sm" name="provinsi_siswa" id="select2-provinsi"></select>
                         </div>
 
                         <div class="col-lg-6 mb-2">
                             <label class="form-labe"> Kabupaten </label>
+                            <small class="badge text-bg-secondary"><?= $value['kabko1']?></small>
                             <select class="form-select form-select-sm" name="kabupaten_siswa" id="select2-kabupaten"></select>
                         </div>
 
                         <div class="col-lg-6 mb-2">
                             <label class="form-labe"> Kecamatan </label>
+                            <small class="badge text-bg-secondary"><?= $value['kec1']?></small>
                             <select class="form-select form-select-sm" name="kecamatan_siswa" id="select2-kecamatan"></select>
                         </div>
 
                         <div class="col-lg-6 mb-2">
                             <label class="form-labe"> Kelurahan / Desa</label>
+                            <small class="badge text-bg-secondary"><?= $value['kelurahan1']?></small>
                             <select class="form-select form-select-sm" name="kelurahan_siswa" id="select2-kelurahan"></select>
                         </div>
                     </div>
@@ -76,22 +81,26 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <label class="form-label" for="nama_sekolah">Nama Asal Sekolah:</label>
-                            <input type="text" class="form-control form-control-sm" placeholder="SD/MI" id="nama_sekolah" name="nama_sekolah">
+                            <input type="text" class="form-control form-control-sm" placeholder="SD/MI" id="nama_sekolah" value="<?= $value['nama_sekolah']?>" name="nama_sekolah">
                         </div>
                         <div class="col-lg-6">
                             <label class="form-label" for="provinsi_sekolah">Provinsi Asal Sekolah:</label>
+                            <small class="badge text-bg-secondary"><?= $value['prov2']?></small>
                             <select class="form-select form-select-sm" id="provinsi_sekolah" name="provinsi_sekolah"></select>
                         </div>
                         <div class="col-lg-6">
                             <label class="form-label" for="kabupaten_sekolah">Kabupaten Asal Sekolah:</label>
+                            <small class="badge text-bg-secondary"><?= $value['kabko2']?></small>
                             <select class="form-select form-select-sm" id="kabupaten_sekolah" name="kabupaten_sekolah"></select>
                         </div>
                         <div class="col-lg-6">
                             <label class="form-label" for="kecamatan_sekolah">Kecamatan Asal Sekolah:</label>
+                            <small class="badge text-bg-secondary"><?= $value['kec2']?></small>
                             <select class="form-select form-select-sm" id="kecamatan_sekolah" name="kecamatan_sekolah"></select>
                         </div>
                         <div class="col-lg-6">
                             <label class="form-label" for="kelurahan_sekolah">Kelurahan / Desa Asal Sekolah:</label>
+                            <small class="badge text-bg-secondary"><?= $value['kelurahan2']?></small>
                             <select class="form-select form-select-sm" id="kelurahan_sekolah" name="kelurahan_sekolah"></select>
                         </div>
                     </div>
@@ -103,6 +112,7 @@
                     <div class="row">
                         <div class="col-lg-6 mb-2">
                             <label class="form-label" for="jalur">Jalur Pendaftaran</label>
+                            <small class="badge text-bg-secondary"><?= $value['jalur']?></small>
                             <select class="form-select form-select-sm" name="jalur" aria-label="Default select example">
                                 <option value="">Pilih Jalur ...</option>
                                 <?php $jalur = (array) $jalur;
@@ -113,6 +123,7 @@
                         </div>
                         <div class="col-lg-6 mb-2">
                             <label class="form-label" for="jalur">Calon Santri Baru untuk Tahun Ajaran</label>
+                            <small class="badge text-bg-secondary"><?= $value['tahunajar']?></small>
                             <select class="form-select form-select-sm" name="thn_ajar" aria-label="Default select example">
                                 <option value="">Tahun Ajaran ...</option>
                                 <?php $tahunajar = (array) $tahunajar;

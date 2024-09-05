@@ -248,6 +248,99 @@ class Home extends BaseController
         return view('admin/template', $content);
     }
 
+    public function editPendaftaranSiswa(){
+        $data = $this->request->getPost();
+        $siswa = array();
+        
+        foreach ($data as $key => $value) {
+            if (!empty($value)) {
+                switch ($key) {
+                    case 'nama':
+                        $siswa['nama'] = $value;
+                        break;
+        
+                    case 'jk':
+                        $siswa['jk'] = $value;
+                        break;
+        
+                    case 'jalur':
+                        $siswa['jalur'] = $value;
+                        break;
+        
+                    case 'tempat_lahir':
+                        $siswa['tempat_lahir'] = $value;
+                        break;
+        
+                    case 'tanggal_lahir':
+                        $siswa['tgl_lahir'] = $value;
+                        break;
+        
+                    case 'nama_orang_tua':
+                        $siswa['ortu'] = $value;
+                        break;
+        
+                    case 'telepon_orang_tua':
+                        $siswa['telp_ortu'] = $value;
+                        break;
+        
+                    case 'provinsi_siswa':
+                        $siswa['prov1'] = $value;
+                        break;
+        
+                    case 'kabupaten_siswa':
+                        $siswa['kabko1'] = $value;
+                        break;
+        
+                    case 'thn_ajar':
+                        $siswa['tahunajar'] = $value;
+                        break;
+        
+                    case 'kecamatan_siswa':
+                        $siswa['kec1'] = $value;
+                        break;
+        
+                    case 'kelurahan_siswa':
+                        $siswa['kelurahan1'] = $value;
+                        break;
+        
+                    case 'alamat':
+                        $siswa['detail_alamat'] = $value;
+                        break;
+        
+                    case 'nama_sekolah':
+                        $siswa['nama_sekolah'] = $value;
+                        break;
+        
+                    case 'provinsi_sekolah':
+                        $siswa['prov2'] = $value;
+                        break;
+        
+                    case 'kabupaten_sekolah':
+                        $siswa['kabko2'] = $value;
+                        break;
+        
+                    case 'kecamatan_sekolah':
+                        $siswa['kec2'] = $value;
+                        break;
+        
+                    case 'kelurahan_sekolah':
+                        $siswa['kelurahan2'] = $value;
+                        break;
+        
+                    default:
+                        // Handle any other key if necessary
+                        break;
+                }
+            }
+        }
+
+        $this->siswa->where('id', $data['id'])->set($siswa)->update();
+        return redirect()->to(previous_url());
+        
+        // Now, the $siswa array contains only the non-empty fields
+
+    }
+
     public function hapusPendaftaranSiswa()
     {
         $id = $this->request->getPost('id');

@@ -1,0 +1,35 @@
+INFO - 2024-09-05 01:29:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-05 01:40:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-05 02:09:16 --> ErrorException: Undefined array key "kel1"
+[Method: GET, Route: detail_siswa/59]
+in APPPATH/Views/admin/formEdit.php on line 73.
+ 1 APPPATH/Views/admin/formEdit.php(73): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "kel1"', '/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Views/admin/formEdit.php', 73)
+ 2 SYSTEMPATH/View/View.php(234): include('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Views/admin/formEdit.php')
+ 3 SYSTEMPATH/View/View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1171): CodeIgniter\View\View->render('admin/formEdit', [], true)
+ 5 APPPATH/Controllers/Home.php(332): view('admin/formEdit', [...])
+ 6 APPPATH/Controllers/Home.php(306): App\Controllers\Home->formEdit([...])
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Home->Detail('59')
+ 8 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
+CRITICAL - 2024-09-05 02:10:13 --> ErrorException: Undefined array key "kel1"
+[Method: GET, Route: detail_siswa/59]
+in APPPATH/Views/admin/formEdit.php on line 73.
+ 1 APPPATH/Views/admin/formEdit.php(73): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "kel1"', '/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Views/admin/formEdit.php', 73)
+ 2 SYSTEMPATH/View/View.php(234): include('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/app/Views/admin/formEdit.php')
+ 3 SYSTEMPATH/View/View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1171): CodeIgniter\View\View->render('admin/formEdit', [], true)
+ 5 APPPATH/Controllers/Home.php(332): view('admin/formEdit', [...])
+ 6 APPPATH/Controllers/Home.php(306): App\Controllers\Home->formEdit([...])
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Home->Detail('59')
+ 8 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
+INFO - 2024-09-05 18:50:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

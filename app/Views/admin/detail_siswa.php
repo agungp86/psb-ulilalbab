@@ -20,7 +20,7 @@
 </style>
 <div class="container mt-3">
     <div class="row">
-        <div class="col-md-9 mb-3">
+        <div class="col-md-9 ">
             <div class="card border-primary">
                 <div class="card-header text-bg-primary">
                     Detail data pendaftaran
@@ -160,7 +160,7 @@
                     $status = 'light';
                     break;
             } ?>
-            <div class="card border-<?php echo $status ?> mb-3">
+            <div class="card border-<?php echo $status ?> mb-3 h-100">
                 <div class="card-header text-bg-<?php echo $status ?>">Status Pembayaran</div>
                 <div class="card-body">
                     <?php if ($siswa['stage'] == 1) { ?>
