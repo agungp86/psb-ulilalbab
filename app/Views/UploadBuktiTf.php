@@ -12,6 +12,18 @@
 </head>
 
 <body>
+<header class="d-flex justify-content-between align-items-center p-3 bg-primary text-light">
+        <!-- Logo on the left corner -->
+        <div class="d-flex align-items-center">
+            <div class="bg-white rounded-circle p-3">
+                <img src="<?= base_url('assets/img/logo.png') ?>" alt="Logo" style="height: 50px;">
+            </div>
+            <div class="ms-3">
+                <h3 class="mb-0">Penerimaan Santri Baru</h3>
+                <strong>Pondok Pesantren Ulil Albab Karanganyar</strong>
+            </div>
+        </div>
+    </header>
     <div class="container">
         <h1 class="my-3">Upload Bukti Bayar Pendaftaran</h1>
         <div class="row">
@@ -67,8 +79,8 @@
                             <br>
                             <br>
                             <p> Silahkan melakukan pembayaran biaya pendaftaran sebesar <strong>Rp.300.000,-</strong> dengan transfer ke nomor rekening Bank Syariah Indonesia (BSI) <button class="btn btn-outline-secondary btn-sm" onclick="copyToClipboard()"><strong>5777-5777-53 </strong><i class="fa-regular fa-clone"></i></button> atas nama SMPIT Ulil Albab atau pembayaran cash dengan datang langsung ke kantor Pesantren Ulil Albab Karanganyar.
-                                Informasi lebih lanjut hubungi admin 0811944244
-                                <button class="btn btn-outline-success btn-sm" onclick="window.open('https://wa.me/62811944244', '_blank')">
+                                Informasi lebih lanjut hubungi admin 0896-0258-6549
+                                <button class="btn btn-outline-success btn-sm" onclick="window.open('https://wa.me/6289602586549', '_blank')">
                                     <i class="fa-brands fa-whatsapp"></i> Chat </button>
                         </div>
 

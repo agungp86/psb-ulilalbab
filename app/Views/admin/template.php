@@ -12,6 +12,18 @@
     
 </head>
 <body>
+<header class="d-flex justify-content-between align-items-center p-3 bg-primary text-light">
+        <!-- Logo on the left corner -->
+        <div class="d-flex align-items-center">
+            <div class="bg-white rounded-circle p-3">
+                <img src="<?= base_url('assets/img/logo.png')?>" alt="Logo" style="height: 50px;" >
+            </div>
+            <div class="ms-3">
+                <h3 class="mb-0">Penerimaan Santri Baru</h3>
+                <strong>Pondok Pesantren Ulil Albab Karanganyar</strong>
+            </div>
+        </div>
+    </header>
 <div class="content">
 <?= $content ?> 
 </div>

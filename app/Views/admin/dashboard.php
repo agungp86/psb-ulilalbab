@@ -1,4 +1,4 @@
-<div class="container mt-3 justify-content-center">
+<div class="container container-fluid mt-3 justify-content-center">
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <ul class="nav nav-pills card-header-pills">

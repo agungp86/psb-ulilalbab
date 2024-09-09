@@ -17,7 +17,7 @@
                         Sabtu-Ahad : 08.00-12.00
                     </p>
                 </li>
-                <li class="list-group-item">Silahkan konfirmasi waktu wawancara anda ke nomor whatsapp admin 0811944244 <button class="btn btn-outline-success btn-sm" onclick="window.open('https://wa.me/62811944244', '_blank')">
+                <li class="list-group-item">Silahkan konfirmasi waktu wawancara anda ke nomor whatsapp admin 0896-0258-6549 <button class="btn btn-outline-success btn-sm" onclick="window.open('https://wa.me/6289602586549', '_blank')">
                 <i class="fa-brands fa-whatsapp"></i> Chat </button></li>
             </ul>
         </div>

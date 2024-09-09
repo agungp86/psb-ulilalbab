@@ -11,12 +11,24 @@
 </head>
 
 <body>
+    <header class="d-flex justify-content-between align-items-center p-3 bg-primary text-light">
+        <!-- Logo on the left corner -->
+        <div class="d-flex align-items-center">
+            <div class="bg-white rounded-circle p-3">
+                <img src="<?= base_url('assets/img/logo.png') ?>" alt="Logo" style="height: 50px;">
+            </div>
+            <div class="ms-3">
+                <h3 class="mb-0">Penerimaan Santri Baru</h3>
+                <strong>Pondok Pesantren Ulil Albab Karanganyar</strong>
+            </div>
+        </div>
+    </header>
     <div class="container mt-2">
-        <h1>Form Pendaftaran Siswa Baru</h1>
+        <h3>Form Pendaftaran Siswa Baru</h3>
         <form id="registrationForm" method="post" action="<?php echo base_url('postReg') ?>">
             <div class="card mb-3">
                 <div class="card-header">
-                    <h3>Data Diri</h3>
+                    <h5>Data Diri</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -50,7 +62,7 @@
                             <input type="date" id="tanggal_lahir" class="form-control" name="tanggal_lahir" required>
                         </div>
                         <!-- <div class="col-lg-4 mb-2"> -->
-                            <input type="hidden" class="form-control" id="nomor_identitas" name="nomor_identitas" placeholder="NISN" value="123123">
+                        <input type="hidden" class="form-control" id="nomor_identitas" name="nomor_identitas" placeholder="NISN" value="123123">
                         <!-- </div> -->
                         <div class="col-lg-6 mb-2">
                             <label class="form-label" for="nama_orang_tua">Nama Orang Tua:</label>
@@ -95,7 +107,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3>Asal Sekolah</h3>
+                    <h5>Asal Sekolah</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -128,7 +140,7 @@
             </div>
             <div class="card mt-3">
                 <div class="card-header">
-                    <h3>Jalur Pendaftaran</h3>
+                    <h5>Jalur Pendaftaran</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
