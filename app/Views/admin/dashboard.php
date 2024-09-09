@@ -3,13 +3,13 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <ul class="nav nav-pills card-header-pills">
                 <li class="nav-item">
-                    <a class="nav-link active" href="<?php echo base_url('dashboard')?>">Data</a>
+                    <a class="nav-link active" href="<?php echo base_url('dashboard') ?>">Data</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url('form')?>">Form</a>
+                    <a class="nav-link" href="<?php echo base_url('form') ?>">Form</a>
                 </li>
             </ul>
-            <form action="<?= base_url('logout')?>" method="get">
+            <form action="<?= base_url('logout') ?>" method="get">
                 <button type="submit" class="btn btn-outline-secondary">
                     Log Out
                     <i class="fa-solid fa-right-from-bracket"></i>
@@ -17,29 +17,36 @@
             </form>
         </div>
         <div class=" card-body p-3">
-            <table class="table table-striped table-sm ">
+            <table id="studentTable" class="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <td>Nama</td>
-                        <td>Waktu Pengisian Formulir</td>
-                        <td>Asal Sekolah</td>
-                        <td>Jalur</td>
-                        <td>Detail</td>
+                        <th>#</th>
+                        <th>Nama</th>
+                        <th>Tahun Ajaran</th>
+                        <th>Asal Sekolah</th>
+                        <th>Jalur</th>
+                        <th>Detail</th>
                     </tr>
                 </thead>
-                <? $record = (array) $record; ?>
                 <tbody>
-                    <?php foreach ($record as $k) { ?>
+                    <?php foreach ($record as $index => $k) { ?>
                         <tr>
-                            <td><?= $k['nama'] ?></td>
-                            <td><?= (new \DateTime($k['created_at']))->format('d-m-y H:i')?></td>
+                            <td><?= $index + 1 ?></td>
+                            <td>
+                                <?= $k['nama'] ?><br>
+                                <small>
+                                    <?= (new \DateTime($k['created_at']))->format('d-m-y H:i') ?>
+                                </small>
+                            </td>
+                            <td>
+                                <?= $k['tahunajar'] ?>
+                            </td>
                             <td><?= $k['nama_sekolah'] ?></td>
                             <td><?= $k['jalur'] ?></td>
                             <td>
                                 <button class="btn btn-outline-primary" onclick="window.open('<?= base_url('detail_siswa/' . $k['id']) ?>', '_blank')">
                                     <i class="fa-solid fa-maximize"></i>
                                 </button>
-
                                 <?php
                                 switch ($k['stage']) {
                                     case 0:
@@ -56,13 +63,19 @@
                                         break;
                                 }
                                 ?>
+                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
 
-
-
+            <script>
+                $(document).ready(function() {
+                    $('#studentTable').DataTable({
+                        "ordering": true
+                    });
+                });
+            </script>
         </div>
     </div>
 </div>
