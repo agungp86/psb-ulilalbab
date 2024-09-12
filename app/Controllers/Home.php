@@ -9,6 +9,7 @@ use App\Models\Kelurahan;
 use App\Models\Siswa;
 use DateTime;
 
+
 class Home extends BaseController
 {
     protected $provinsi;
@@ -24,6 +25,8 @@ class Home extends BaseController
         $this->kecamatan = new Kecamatan();
         $this->kelurahan = new Kelurahan();
         $this->siswa = new Siswa();
+        
+
     }
     public function index(): string
     {
