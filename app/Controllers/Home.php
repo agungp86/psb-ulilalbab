@@ -28,6 +28,7 @@ class Home extends BaseController
         
 
     }
+
     public function index(): string
     {
         return view('Beranda2');
@@ -571,7 +572,7 @@ class Home extends BaseController
         }
     }
 
-    function getRegionName($table, $id)
+    private function getRegionName($table, $id)
     {
         $db = \Config\Database::connect();
         $query = $db->table($table)

@@ -22,7 +22,8 @@ $routes->post('/updatejalur', 'Home::formupdate/jalur');
 $routes->post('/hapusPdftr', 'Home::hapusPendaftaranSiswa', ['filter' => 'sessionCheck']);
 $routes->post('/postEdit', 'Home::editPendaftaranSiswa', ['filter' => 'sessionCheck']);
 
-
+//Download data
+$routes->get('/downloadExcel', 'Excel::downloadExcel');
 
 
 // route siswa 

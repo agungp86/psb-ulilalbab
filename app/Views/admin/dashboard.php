@@ -69,6 +69,8 @@
                 </tbody>
             </table>
 
+            
+
             <script>
                 $(document).ready(function() {
                     $('#studentTable').DataTable({
@@ -76,6 +78,9 @@
                     });
                 });
             </script>
+        </div>
+        <div class="card-footer">
+           <a href="<?= base_url('downloadExcel')?>" class="btn btn-outline-success">Download Excel</a>
         </div>
     </div>
 </div>
