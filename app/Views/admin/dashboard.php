@@ -58,6 +58,9 @@
                                     case 2:
                                         echo '<span class="badge text-bg-primary">terkonfirmasi</span>';
                                         break;
+                                    case 3:
+                                        echo '<span class="badge text-bg-info">lulus wawancara</span>';
+                                        break;
                                     default:
                                         echo '<span class="badge text-bg-danger">status tidak dikenal</span>';
                                         break;
@@ -69,7 +72,7 @@
                 </tbody>
             </table>
 
-            
+
 
             <script>
                 $(document).ready(function() {
@@ -80,7 +83,7 @@
             </script>
         </div>
         <div class="card-footer">
-           <a href="<?= base_url('downloadExcel')?>" class="btn btn-outline-success">Download Excel</a>
+            <a href="<?= base_url('downloadExcel') ?>" class="btn btn-outline-success">Download Excel</a>
         </div>
     </div>
 </div>

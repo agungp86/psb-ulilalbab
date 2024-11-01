@@ -15,7 +15,7 @@
         <div class="card-footer border-success d-flex justify-content-end">
             
             <a href="#" class="btn btn-outline-success" onclick="submitForm()"><i class="fa-regular fa-hand-point-right"></i> Lanjut ke pembayaran</a>
-            <form id="hiddenForm" action="<?= base_url('cekRegistrasi') ?>" method="post" style="display: none;">
+            <form id="hiddenForm" action="<?= base_url('cekRegistrasi') ?>" method="get" style="display: none;">
                 <input type="hidden" name="noreg" value="<?= $noreg ?>">
             </form>
         </div>

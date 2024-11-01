@@ -21,6 +21,8 @@ $routes->post('/updatetahun', 'Home::formupdate/tahun');
 $routes->post('/updatejalur', 'Home::formupdate/jalur');
 $routes->post('/hapusPdftr', 'Home::hapusPendaftaranSiswa', ['filter' => 'sessionCheck']);
 $routes->post('/postEdit', 'Home::editPendaftaranSiswa', ['filter' => 'sessionCheck']);
+$routes->post('/verifikasiWawancara', 'Home::stageWawancara', ['filter' => 'sessionCheck']);
+
 
 //Download data
 $routes->get('/downloadExcel', 'Excel::downloadExcel');
@@ -29,8 +31,12 @@ $routes->get('/downloadExcel', 'Excel::downloadExcel');
 // route siswa 
 $routes->get('/registrasiBaru',     'Home::signUp');
 $routes->post('/postReg',           'Home::formPost');
-$routes->post('/cekRegistrasi',     'Home::checkRegistrasi');
+$routes->get('/cekRegistrasi',     'Home::checkRegistrasi');
 $routes->post('/uploadBuktiTf',     'Home::BuktiTf');
 $routes->get('/Prov',               'Home::getProvinsi');
 $routes->get('/jalur',               'Home::getJalur');
 $routes->get('/tahun',               'Home::getTahun');
+$routes->post('/berkas/upload/foto',       'Uploads::uploadFoto');
+$routes->post('/berkas/upload/akta',       'Uploads::uploadAkta');
+$routes->post('/berkas/upload/kk',         'Uploads::uploadKk');
+$routes->post('/berkas/upload/surat',      'Uploads::uploadSurat');

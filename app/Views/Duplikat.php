@@ -14,7 +14,7 @@
         </div>
         <div class="card-footer d-flex justify-content-end border-warning">
             <a href="#" class="btn btn-outline-secondary" onclick="submitForm()">Cek Status Pendaftaran</a>
-            <form id="hiddenForm" action="<?= base_url('cekRegistrasi') ?>" method="post" style="display: none;">
+            <form id="hiddenForm" action="<?= base_url('cekRegistrasi') ?>" method="get" style="display: none;">
                 <input type="hidden" name="noreg" value="<?= $noreg ?>">
             </form>
         </div>

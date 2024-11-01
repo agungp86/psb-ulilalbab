@@ -7,6 +7,7 @@ use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Siswa;
+use App\Controllers\Uploads;
 use DateTime;
 
 
@@ -17,6 +18,7 @@ class Home extends BaseController
     protected $kecamatan;
     protected $kelurahan;
     protected $siswa;
+    protected $uploads;
 
     function __construct()
     {
@@ -25,8 +27,7 @@ class Home extends BaseController
         $this->kecamatan = new Kecamatan();
         $this->kelurahan = new Kelurahan();
         $this->siswa = new Siswa();
-        
-
+        $this->uploads = new Uploads();
     }
 
     public function index(): string
@@ -115,7 +116,7 @@ class Home extends BaseController
 
     function checkRegistrasi()
     {
-        $noreg = $this->request->getPost('noreg');
+        $noreg = $this->request->getGet('noreg');
         $data = $this->siswa->where('noreg', $noreg)->first();
         if ($data == null) {
             $content = array(
@@ -140,7 +141,7 @@ class Home extends BaseController
                         'judul' => 'Pendaftaran dan pembayaran diverifikasi'
                     ]);
                 case 3:
-                    $this->coba();
+                    return $this->uploads->index($data['id']);
                     break;
                 default:
                     echo "Data tidak ditemukan, anda siapa?";
@@ -155,7 +156,7 @@ class Home extends BaseController
             'noreg' => $this->request->getPost('par1'),
             'tgl_lahir' => $this->request->getPost('par2')
         );
-        if ($file->isValid()) {
+        if ($file->isValid()){
             if (
                 $this->siswa
                 ->where('noreg', $data['noreg'])
@@ -177,9 +178,13 @@ class Home extends BaseController
         } else {
             echo "gagal upload file";
         }
-        // echo "is valid " . $file->isValid();
-        // echo "<br> size " . $file->getSize();
-        // echo "<br> ext " . $file->getClientExtension();
+    }
+
+    public function stageWawancara()
+    {
+        $id = $this->request->getPost('id');
+        $this->siswa->where('id', $id)->set('stage', 3)->update();
+        return redirect()->to(previous_url());
     }
 
     public function Admin()
@@ -252,85 +257,86 @@ class Home extends BaseController
         return view('admin/template', $content);
     }
 
-    public function editPendaftaranSiswa(){
+    public function editPendaftaranSiswa()
+    {
         $data = $this->request->getPost();
         $siswa = array();
-        
+
         foreach ($data as $key => $value) {
             if (!empty($value)) {
                 switch ($key) {
                     case 'nama':
                         $siswa['nama'] = $value;
                         break;
-        
+
                     case 'jk':
                         $siswa['jk'] = $value;
                         break;
-        
+
                     case 'jalur':
                         $siswa['jalur'] = $value;
                         break;
-        
+
                     case 'tempat_lahir':
                         $siswa['tempat_lahir'] = $value;
                         break;
-        
+
                     case 'tanggal_lahir':
                         $siswa['tgl_lahir'] = $value;
                         break;
-        
+
                     case 'nama_orang_tua':
                         $siswa['ortu'] = $value;
                         break;
-        
+
                     case 'telepon_orang_tua':
                         $siswa['telp_ortu'] = $value;
                         break;
-        
+
                     case 'provinsi_siswa':
                         $siswa['prov1'] = $value;
                         break;
-        
+
                     case 'kabupaten_siswa':
                         $siswa['kabko1'] = $value;
                         break;
-        
+
                     case 'thn_ajar':
                         $siswa['tahunajar'] = $value;
                         break;
-        
+
                     case 'kecamatan_siswa':
                         $siswa['kec1'] = $value;
                         break;
-        
+
                     case 'kelurahan_siswa':
                         $siswa['kelurahan1'] = $value;
                         break;
-        
+
                     case 'alamat':
                         $siswa['detail_alamat'] = $value;
                         break;
-        
+
                     case 'nama_sekolah':
                         $siswa['nama_sekolah'] = $value;
                         break;
-        
+
                     case 'provinsi_sekolah':
                         $siswa['prov2'] = $value;
                         break;
-        
+
                     case 'kabupaten_sekolah':
                         $siswa['kabko2'] = $value;
                         break;
-        
+
                     case 'kecamatan_sekolah':
                         $siswa['kec2'] = $value;
                         break;
-        
+
                     case 'kelurahan_sekolah':
                         $siswa['kelurahan2'] = $value;
                         break;
-        
+
                     default:
                         // Handle any other key if necessary
                         break;
@@ -340,7 +346,7 @@ class Home extends BaseController
 
         $this->siswa->where('id', $data['id'])->set($siswa)->update();
         return redirect()->to(previous_url());
-        
+
         // Now, the $siswa array contains only the non-empty fields
 
     }
@@ -401,7 +407,7 @@ class Home extends BaseController
             $data = array(
                 'siswa' => $siswa,
                 'form' => $this->formEdit($siswa)
-        );
+            );
 
             $content = array(
                 'content' => view('admin/detail_siswa', $data),

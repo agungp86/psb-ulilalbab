@@ -1,0 +1,34 @@
+INFO - 2024-10-12 02:49:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-12 02:52:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-12 05:53:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-12 05:53:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-12 05:53:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-12 05:53:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-12 05:53:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-12 05:53:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-12 05:53:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-10-12 06:10:40 --> ParseError: syntax error, unexpected token "}", expecting "," or ";"
+[Method: GET, Route: /]
+in APPPATH/Controllers/Uploads.php on line 22.
+ 1 VENDORPATH/composer/ClassLoader.php(427): Composer\Autoload\{closure}('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/composer/../../app/Controllers/Uploads.php')
+ 2 APPPATH/Controllers/Home.php(30): Composer\Autoload\ClassLoader->loadClass('App\\Controllers\\Uploads')
+ 3 SYSTEMPATH/CodeIgniter.php(903): App\Controllers\Home->__construct()
+ 4 SYSTEMPATH/CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 5 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
+CRITICAL - 2024-10-12 06:10:46 --> ParseError: syntax error, unexpected token "}", expecting "," or ";"
+[Method: GET, Route: /]
+in APPPATH/Controllers/Uploads.php on line 22.
+ 1 VENDORPATH/composer/ClassLoader.php(427): Composer\Autoload\{closure}('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/vendor/composer/../../app/Controllers/Uploads.php')
+ 2 APPPATH/Controllers/Home.php(30): Composer\Autoload\ClassLoader->loadClass('App\\Controllers\\Uploads')
+ 3 SYSTEMPATH/CodeIgniter.php(903): App\Controllers\Home->__construct()
+ 4 SYSTEMPATH/CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 5 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH/rewrite.php(44): require_once('/Users/galihagung/Documents/Development/ulilalbab/dev-psb.ulilalbabkra.sch.id/psb-ulilalbab/public/index.php')
+INFO - 2024-10-12 06:11:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

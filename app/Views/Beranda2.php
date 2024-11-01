@@ -60,7 +60,7 @@
                 <div class="col-md-10 col-lg-8 mx-auto text-center">
                     <i class="fa-solid fa-child-reaching fa-2x mb-2 text-white"></i>
                     <h2 class="text-white mb-5">Cek Status Pendaftaran</h2>
-                    <form class="form-signup" id="contactForm" action="<?php echo base_url('cekRegistrasi') ?>" method="post">
+                    <form class="form-signup" id="contactForm" action="<?php echo base_url('cekRegistrasi') ?>" method="get">
                         <!-- Email address input-->
                         <div class="row input-group-newsletter">
                             <div class="col"><input class="form-control" id="noreg" type="text"
