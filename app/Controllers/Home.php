@@ -149,6 +149,8 @@ class Home extends BaseController
         }
     }
 
+    
+
     function BuktiTf()
     {
         $file = $this->request->getFile('bukti');

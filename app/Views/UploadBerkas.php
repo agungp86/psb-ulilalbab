@@ -22,7 +22,7 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title">Upload Fotocopy Akta</h5>
-                        <form action="<?php echo base_url('berkas//upload/akta')?>" method="POST" enctype="multipart/form-data">
+                        <form action="<?php echo base_url('berkas/upload/akta')?>" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="id" value="<?php echo $id?>">
                             <div class="mb-3">
                                 <!-- <label for="akta" class="form-label">Fotocopy Akta</label> -->
@@ -39,7 +39,7 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title">Upload Fotocopy KK</h5>
-                        <form action="<?php echo base_url('berkas//upload/kk')?>" method="POST" enctype="multipart/form-data">
+                        <form action="<?php echo base_url('berkas/upload/kk')?>" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="id" value="<?php echo $id?>">
                             <div class="mb-3">
                                 <!-- <label for="kk" class="form-label">Fotocopy KK</label> -->
@@ -56,7 +56,7 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title">Upload Surat Keterangan</h5>
-                        <form action="<?php echo base_url('berkas//upload/surat')?>" method="POST" enctype="multipart/form-data">
+                        <form action="<?php echo base_url('berkas/upload/surat')?>" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="id" value="<?php echo $id?>">
                             <div class="mb-3">
                                 <!-- <label for="surat" class="form-label">Surat Keterangan</label> -->
