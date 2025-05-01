@@ -62,7 +62,7 @@
                                         echo '<span class="badge text-bg-info">lulus wawancara</span>';
                                         break;
                                     default:
-                                        echo '<span class="badge text-bg-danger">status tidak dikenal</span>';
+                                        echo '<span class="badge text-bg-danger">Tidak ditemukan</span>';
                                         break;
                                 }
                                 ?>
