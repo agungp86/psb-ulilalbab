@@ -1,72 +1,68 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <div class="container my-5">
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            <!-- Card for Foto -->
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+
+        <?php
+        $daftarBerkas = [
+            [
+                'label' => 'Foto',
+                'name' => 'foto',
+                'accept' => '.jpeg,.jpg',
+                'folder' => 'foto',
+            ],
+            [
+                'label' => 'Fotocopy Akta',
+                'name' => 'akta',
+                'accept' => '.pdf',
+                'folder' => 'akta',
+            ],
+            [
+                'label' => 'Fotocopy KK',
+                'name' => 'kk',
+                'accept' => '.pdf',
+                'folder' => 'kk',
+            ],
+            [
+                'label' => 'Surat Keterangan',
+                'name' => 'surat',
+                'accept' => '.pdf',
+                'folder' => 'surat',
+            ],
+        ];
+        ?>
+
+        <?php foreach ($daftarBerkas as $item): ?>
+            <?php
+                $file = $berkas[$item['name']] ?? null;
+                $isUploaded = !empty($file);
+                $borderClass = $isUploaded ? 'border-success' : 'border-danger';
+                $icon = $isUploaded 
+                    ? '<i class="fa-solid fa-square-check text-success"></i>' 
+                    : '<i class="fa-solid fa-square-xmark text-danger"></i>';
+            ?>
             <div class="col">
-                <div class="card h-100">
+                <div class="card h-100 <?= $borderClass ?>">
                     <div class="card-body">
-                        <h5 class="card-title">Upload Foto</h5>
-                        <form action="<?php echo base_url('berkas/upload/foto')?>" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="id" value="<?php echo $id?>">
+                        <h5 class="card-title">
+                            Upload <?= $item['label'] ?> <?= $icon ?>
+                        </h5>
+                        <form action="<?= base_url('berkas/upload/' . $item['name']) ?>" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="id" value="<?= $id ?>">
                             <div class="mb-3">
-                                <!-- <label for="foto" class="form-label">Foto</label> -->
-                                <input type="file" accept=".jpeg, .jpg" class="form-control" id="foto" name="foto" required>
+                                <input type="file" accept="<?= $item['accept'] ?>" class="form-control" name="<?= $item['name'] ?>" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Upload</button>
-                            <small class="badge text-bg-light"><a href="#" target="_blank">Lihat</a> berkas sebelumnya</small>
+                            <button type="submit" class="btn btn-primary w-100">Upload</button>
+                            <?php if ($isUploaded): ?>
+                                <small class="badge text-bg-light mt-2 d-block">
+                                    <a href="<?= base_url('uploads/' . $item['folder'] . '/' . $file) ?>" target="_blank">Lihat</a> berkas sebelumnya
+                                </small>
+                            <?php endif; ?>
                         </form>
                     </div>
                 </div>
             </div>
-            <!-- Card for Fotocopy Akta -->
-            <div class="col">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Upload Fotocopy Akta</h5>
-                        <form action="<?php echo base_url('berkas/upload/akta')?>" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="id" value="<?php echo $id?>">
-                            <div class="mb-3">
-                                <!-- <label for="akta" class="form-label">Fotocopy Akta</label> -->
-                                <input type="file" accept=".pdf" class="form-control" id="akta" name="akta" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Upload</button>
-                            <small class="badge text-bg-light"><a href="#" target="_blank">Lihat</a> berkas sebelumnya</small>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- Card for Fotocopy KK -->
-            <div class="col">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Upload Fotocopy KK</h5>
-                        <form action="<?php echo base_url('berkas/upload/kk')?>" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="id" value="<?php echo $id?>">
-                            <div class="mb-3">
-                                <!-- <label for="kk" class="form-label">Fotocopy KK</label> -->
-                                <input type="file" accept=".pdf" class="form-control" id="kk" name="kk" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Upload</button>
-                            <small class="badge text-bg-light"><a href="#" target="_blank">Lihat</a> berkas sebelumnya</small>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- Card for Surat Keterangan -->
-            <div class="col">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Upload Surat Keterangan</h5>
-                        <form action="<?php echo base_url('berkas/upload/surat')?>" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="id" value="<?php echo $id?>">
-                            <div class="mb-3">
-                                <!-- <label for="surat" class="form-label">Surat Keterangan</label> -->
-                                <input type="file" accept=".pdf" class="form-control" id="surat" name="surat" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Upload</button>
-                            <small class="badge text-bg-light"><a href="#" target="_blank">Lihat</a> berkas sebelumnya</small>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>
+
     </div>
+</div>

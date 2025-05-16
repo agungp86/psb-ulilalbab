@@ -3,200 +3,102 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\Files;
 
 class Uploads extends BaseController
 {
     protected $files;
-    function __construct()
+
+    public function __construct()
     {
         $this->files = new Files();
     }
+
     public function index($id)
     {
         $data['id'] = $id;
+    
+        // Ambil semua file berdasarkan id_siswa
+        $fileData = $this->files->where('id_siswa', $id)->findAll();
+    
+        // Ubah jadi array dengan key berdasarkan 'jenis'
+        $berkas = [];
+        foreach ($fileData as $row) {
+            $berkas[$row['jenis']] = $row['path'];
+        }
+    
+        $data['berkas'] = $berkas;
+    
         return view('Notif', [
             'content' => view('UploadBerkas', $data),
             'judul' => 'Upload Berkas Pendaftaran'
         ]);
-        
     }
 
-    // Handle Foto Upload
     public function uploadFoto()
     {
-        $file = $this->request->getFile('foto');
-        if ($file->isValid() && !$file->hasMoved()) {
-            if ($file->getMimeType() == 'image/jpeg') {
-
-                //delete existing
-                $this->deleteExisting('foto',$this->request->getPost('id'));
-
-                // Rename the file
-                $newName = $file->getRandomName();
-                // Move the file to the directory
-                $file->move('uploads/foto', $newName);
-
-                // Store the file path in the database or take other actions as needed
-                $data = array(
-                    'jenis' => 'foto',
-                    'path'  => $newName,
-                    'id_siswa' => $this->request->getPost('id')
-                );
-                $this->files->insert($data);
-
-                return redirect()->to(previous_url());
-                //  echo "upload sukses";
-            } else {
-                echo 'Only JPEG files are allowed for Foto.';
-            }
-        }
+        return $this->handleUpload('foto', 'foto', 'image/jpeg', 'foto');
     }
 
-    // Handle Fotocopy Akta Upload
     public function uploadAkta()
     {
-        $file = $this->request->getFile('akta');
-        if ($file->isValid() && !$file->hasMoved()) {
-            if ($file->getMimeType() == 'application/pdf') {
-                  //delete existing
-                $this->deleteExisting('akta',$this->request->getPost('id'));
-
-                // Rename the file
-                $newName = $file->getRandomName();
-                // Move the file to the directory
-                $file->move('uploads/akta', $newName);
-
-                // Store the file path in the database or take other actions as needed
-                $data = array(
-                    'jenis' => 'akta',
-                    'path'  => $newName,
-                    'id_siswa' => $this->request->getPost('id')
-                );
-                $this->files->insert($data);
-
-                return redirect()->to(previous_url());
-                //  echo "upload sukses";
-            } else {
-                echo 'Only PDF files are allowed for Fotocopy Akta.';
-            }
-        }
+        return $this->handleUpload('akta', 'akta', 'application/pdf', 'akta');
     }
 
-    // Handle Fotocopy KK Upload
     public function uploadKk()
     {
-        $file = $this->request->getFile('kk');
-        if ($file->isValid() && !$file->hasMoved()) {
-            if ($file->getMimeType() == 'application/pdf') {
-                // Rename the file
-                $newName = $file->getRandomName();
-                // Move the file to the directory
-                $file->move('uploads/kk', $newName);
-
-                // Store the file path in the database or take other actions as needed
-                // Example: $this->model->save(['kk' => $newName]);
-
-                return redirect()->to(previous_url());
-            } else {
-                echo 'Only PDF files are allowed for Fotocopy KK.';
-            }
-        }
+        return $this->handleUpload('kk', 'kk', 'application/pdf', 'kk');
     }
 
-    // Handle Surat Keterangan Upload
     public function uploadSurat()
     {
-        $file = $this->request->getFile('surat');
-        if ($file->isValid() && !$file->hasMoved()) {
-            if ($file->getMimeType() == 'application/pdf') {
-                // Rename the file
+        return $this->handleUpload('surat', 'surat', 'application/pdf', 'surat');
+    }
+
+    private function handleUpload($field, $jenis, $allowedMime, $folder)
+    {
+        $file = $this->request->getFile($field);
+        $id = $this->request->getPost('id');
+
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            if ($file->getMimeType() == $allowedMime) {
+                // Delete old file if exists
+                $this->deleteExisting($jenis, $id);
+
                 $newName = $file->getRandomName();
-                // Move the file to the directory
-                $file->move('uploads/surat', $newName);
+                $file->move('uploads/' . $folder, $newName);
 
-                // Store the file path in the database or take other actions as needed
-                // Example: $this->model->save(['surat' => $newName]);
+                // Save to DB
+                $this->files->insert([
+                    'jenis' => $jenis,
+                    'path' => $newName,
+                    'id_siswa' => $id
+                ]);
 
-                return redirect()->to(previous_url());
+                return redirect()->to(previous_url())->with('success', ucfirst($jenis) . ' berhasil diupload.');
             } else {
-                echo 'Only PDF files are allowed for Surat Keterangan.';
+                return redirect()->to(previous_url())->with('error', 'Hanya file bertipe ' . $allowedMime . ' yang diizinkan untuk ' . ucfirst($jenis) . '.');
             }
+        } else {
+            return redirect()->to(previous_url())->with('error', 'Gagal mengupload file ' . ucfirst($jenis) . '.');
         }
     }
 
-    function deleteExisting($condition, $id)
+    private function deleteExisting($jenis, $id)
     {
+        $pathFolder = 'uploads/' . $jenis . '/';
+        $existingFile = $this->files
+            ->where('id_siswa', $id)
+            ->where('jenis', $jenis)
+            ->first();
 
-        switch ($condition) {
-            case 'foto':
-                // Unlink existing file 
-                $photoPath = 'uploads/foto/';
-
-                // Check if user already has uploaded a photo
-                $existingFiles = $this->files->where('id_siswa', $id)->first();
-
-                // Remove old photo if it exists
-                if ($existingFiles && $existingFiles['path']) {
-                    if (file_exists($photoPath . $existingFiles['path'])) {
-                        unlink($photoPath . $existingFiles['path']);
-                    }
-                }
-
-                $this->files->where('id_siswa', $id)->where('jenis', 'foto')->delete();
-
-                break;
-            case 'akta':
-                // Unlink existing file 
-                $photoPath = 'uploads/akta/';
-
-                // Check if user already has uploaded a photo
-                $existingFiles = $this->files->where('id_siswa', $id)->first();
-
-                // Remove old photo if it exists
-                if ($existingFiles && $existingFiles['path']) {
-                    if (file_exists($photoPath . $existingFiles['path'])) {
-                        unlink($photoPath . $existingFiles['path']);
-                    }
-                }
-
-                $this->files->where('id_siswa', $id)->where('jenis', 'akta')->delete();
-
-                break;
-            case 'kk':
-                // Unlink existing file 
-                $photoPath = 'uploads/kk/';
-
-                // Check if user already has uploaded a photo
-                $existingFiles = $this->files->where('id_siswa', $id)->first();
-
-                // Remove old photo if it exists
-                if ($existingFiles && $existingFiles['path']) {
-                    if (file_exists($photoPath . $existingFiles['path'])) {
-                        unlink($photoPath . $existingFiles['path']);
-                    }
-                }
-
-                break;
-            case 'surat':
-                // Unlink existing file 
-                $photoPath = 'uploads/surat/';
-
-                // Check if user already has uploaded a photo
-                $existingFiles = $this->files->where('id_siswa', $id)->first();
-
-                // Remove old photo if it exists
-                if ($existingFiles && $existingFiles['path']) {
-                    if (file_exists($photoPath . $existingFiles['path'])) {
-                        unlink($photoPath . $existingFiles['path']);
-                    }
-                }
-
-                break;
-            default:
-                echo "No matching condition.";
-                break;
+        if ($existingFile && $existingFile['path']) {
+            $fullPath = $pathFolder . $existingFile['path'];
+            if (file_exists($fullPath)) {
+                unlink($fullPath);
+            }
         }
+
+        $this->files->where('id_siswa', $id)->where('jenis', $jenis)->delete();
     }
 }
