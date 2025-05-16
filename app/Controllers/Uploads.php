@@ -101,4 +101,18 @@ class Uploads extends BaseController
 
         $this->files->where('id_siswa', $id)->where('jenis', $jenis)->delete();
     }
+
+    public function getBerkasJson($id)
+{
+    // Ambil semua file berdasarkan id_siswa
+    $fileData = $this->files->where('id_siswa', $id)->findAll();
+
+    // Ubah ke format berkas[jenis] = path
+    $berkas = [];
+    foreach ($fileData as $row) {
+        $berkas[$row['jenis']] = $row['path'];
+    }
+
+    return $this->response->setJSON($berkas);
+}
 }

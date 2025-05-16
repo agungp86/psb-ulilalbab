@@ -22,6 +22,7 @@ $routes->post('/updatejalur', 'Home::formupdate/jalur');
 $routes->post('/hapusPdftr', 'Home::hapusPendaftaranSiswa', ['filter' => 'sessionCheck']);
 $routes->post('/postEdit', 'Home::editPendaftaranSiswa', ['filter' => 'sessionCheck']);
 $routes->post('/verifikasiWawancara', 'Home::stageWawancara', ['filter' => 'sessionCheck']);
+$routes->get('/api/berkas/(:num)', 'Uploads::getBerkasJson/$1');
 
 
 //Download data
