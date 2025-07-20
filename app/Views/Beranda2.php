@@ -32,7 +32,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="<?php echo base_url('registrasiBaru')?>">Daftar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo base_url('registrasiBaru') ?>">Daftar</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Cek Status</a></li>
                     <li class="nav-item"><a class="nav-link" href="#signup">Petunjuk Pendaftaran</a></li>
                     <li class="nav-item"><a class="nav-link" href="https://smpit.ulilalbabkra.sch.id">Profil Pesantren</a></li>
@@ -47,40 +47,39 @@
                 <div class="text-center">
                     <h1 class="mx-auto my-0">Penerimaan Siswa Baru</h1>
                     <h2 class="mx-auto mt-2 mb-5">SMPIT Ulil Albab Karanganyar</h2>
-                    <a class="btn btn-primary" href="<?php echo base_url('registrasiBaru')?>">Daftar Baru</a>
+                    <a class="btn btn-primary" href="<?php echo base_url('registrasiBaru') ?>">Daftar Baru</a>
                     <a class="btn btn-success" href="#projects">Cek Pendaftaran</a>
                 </div>
             </div>
         </div>
     </header>
     <!-- Projects-->
-    <section class="about-section text-center" id="projects">
-        <div class="container px-4 px-lg-5 pb-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 mx-auto text-center">
-                    <i class="fa-solid fa-child-reaching fa-2x mb-2 text-white"></i>
-                    <h2 class="text-white mb-5">Cek Status Pendaftaran</h2>
-                    <form class="form-signup" id="contactForm" action="<?php echo base_url('cekRegistrasi') ?>" method="get">
-                        <!-- Email address input-->
-                        <div class="row input-group-newsletter">
-                            <div class="col"><input class="form-control" id="noreg" type="text"
-                            name="noreg"    placeholder="Nomor Pendaftaran" aria-label="Nomor Pendaftaran" /></div>
-                            <div class="col-auto"><button class="btn btn-primary" id="submitButton"
-                                    type="submit">Kirim</button></div>
+    <section id="projects" class="text-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Icon -->
+                    <i class="fa-solid fa-child-reaching fa-3x mb-3 text-white" ></i>
+                    <!-- Judul -->
+                    <h2 class="mb-4">Cek Status Pendaftaran</h2>
+                    <!-- Form Pendaftaran -->
+                    <form action="<?= base_url('cekRegistrasi') ?>" method="get" class="w-75 mx-auto">
+                        <div class="input-group">
+                            <input type="text"
+                                class="form-control"
+                                id="noreg"
+                                name="noreg"
+                                placeholder="Nomor Pendaftaran"
+                                aria-label="Nomor Pendaftaran"
+                                required>
+                            <button class="btn btn-primary" type="submit">Cek</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Signup-->
-    <section class="signup-section" id="signup">
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5">
 
-            </div>
-        </div>
-    </section>
     <!-- Footer-->
     <footer class="footer bg-black small text-center text-white-50">
         <div class="container px-4 px-lg-5">Copyright &copy; ulilalbabkra.sch.id 2024</div>
