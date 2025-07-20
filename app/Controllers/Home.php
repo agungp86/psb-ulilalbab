@@ -168,9 +168,9 @@ class Home extends BaseController
                 $newName = $file->getRandomName();
                 $file->move('uploads/buktitf', $newName);
                 $this->siswa->where('noreg', $data['noreg'])->set('bukti_tf', $newName)->update();
-                $this->siswa->where('noreg', $data['noreg'])->set('stage', 1)->update();
+                $this->siswa->where('noreg', $data['noreg'])->set('stage', 2)->update();
                 $content = array(
-                    'content' => view('BuktiTfSukses'),
+                    'content' => view('Verified'),
                     'judul' => 'Bukti Transfer Berhasil Diupload'
                 );
                 return view('Notif', $content);
