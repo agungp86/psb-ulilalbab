@@ -4,31 +4,34 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Files;
+use App\Models\Siswa;
 
 class Uploads extends BaseController
 {
     protected $files;
+    protected $encrypter;
 
     public function __construct()
     {
         $this->files = new Files();
+        $this->encrypter = \Config\Services::encrypter();
     }
 
     public function index($id)
     {
-        $data['id'] = $id;
-    
+        $data['id'] = $this->encodeId($id);;
+
         // Ambil semua file berdasarkan id_siswa
         $fileData = $this->files->where('id_siswa', $id)->findAll();
-    
+
         // Ubah jadi array dengan key berdasarkan 'jenis'
         $berkas = [];
         foreach ($fileData as $row) {
             $berkas[$row['jenis']] = $row['path'];
         }
-    
+
         $data['berkas'] = $berkas;
-    
+
         return view('Notif', [
             'content' => view('UploadBerkas', $data),
             'judul' => 'Upload Berkas Pendaftaran'
@@ -58,7 +61,7 @@ class Uploads extends BaseController
     private function handleUpload($field, $jenis, $allowedMime, $folder)
     {
         $file = $this->request->getFile($field);
-        $id = $this->request->getPost('id');
+        $id = $this->decodeId($this->request->getPost('id'));;
 
         if ($file && $file->isValid() && !$file->hasMoved()) {
             if ($file->getMimeType() == $allowedMime) {
@@ -103,16 +106,52 @@ class Uploads extends BaseController
     }
 
     public function getBerkasJson($id)
-{
-    // Ambil semua file berdasarkan id_siswa
-    $fileData = $this->files->where('id_siswa', $id)->findAll();
+    {
+        // Ambil semua file berdasarkan id_siswa
+        $fileData = $this->files->where('id_siswa', $id)->findAll();
 
-    // Ubah ke format berkas[jenis] = path
-    $berkas = [];
-    foreach ($fileData as $row) {
-        $berkas[$row['jenis']] = $row['path'];
+        // Ubah ke format berkas[jenis] = path
+        $berkas = [];
+        foreach ($fileData as $row) {
+            $berkas[$row['jenis']] = $row['path'];
+        }
+
+        return $this->response->setJSON($berkas);
     }
 
-    return $this->response->setJSON($berkas);
-}
+    public function encodeId(int $id): string
+    {
+        // encrypt() menghasilkan binary, lalu kita base64-encode
+        $cipher  = $this->encrypter->encrypt((string) $id);
+        return urlencode(base64_encode($cipher));
+    }
+
+    /**
+     * Decode (base64_decode + dekripsi) ID yang diterima dari view
+     */
+    public function decodeId(string $encoded)
+    {
+        // kebalikan encodeId()
+        $cipher = base64_decode(urldecode($encoded));
+        try {
+            $plain = $this->encrypter->decrypt($cipher);
+            return (int) $plain;
+        } catch (\Exception $e) {
+            return null; // atau throw 404
+        }
+    }
+
+    public function setStage5()
+    {
+        $id = $this->decodeId($this->request->getPost('id'));
+        if ($id === null) {
+            return redirect()->to(previous_url())->with('error', 'ID tidak valid.');
+        }
+
+        // Update status siswa ke tahap 5
+        $siswaModel = new Siswa();
+        $siswaModel->update($id, ['stage' => 5]);
+
+        return redirect()->to(previous_url())->with('success', 'Pendaftaran berhasil diselesaikan. Silakan tunggu informasi selanjutnya.');
+    }
 }

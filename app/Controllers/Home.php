@@ -143,6 +143,11 @@ class Home extends BaseController
                 case 3:
                     return $this->uploads->index($data['id']);
                     break;
+                case 5:
+                    return view('Notif', [
+                        'content' => view('UploadBerkasSukses'),
+                        'judul' => 'Berkas Berhasil Diupload'
+                    ]);
                 default:
                     echo "Data tidak ditemukan, anda siapa?";
             }
