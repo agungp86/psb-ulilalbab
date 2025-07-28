@@ -115,6 +115,8 @@ class Excel extends BaseController
                 return 'lolos wawancara';
             case 4:
                 return 'diterima';
+            case 5:
+                return 'berkas lengkap';
             default:
                 return 'status tidak dikenal';
         }

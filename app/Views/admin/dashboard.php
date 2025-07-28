@@ -61,6 +61,12 @@
                                     case 3:
                                         echo '<span class="badge text-bg-info">lulus wawancara</span>';
                                         break;
+                                    case 4:
+                                        echo '<span class="badge text-bg-warning">lulus seleksi</span>';
+                                        break;
+                                    case 5:
+                                        echo '<span class="badge text-bg-success">berkas lengkap</span>';
+                                        break;
                                     default:
                                         echo '<span class="badge text-bg-danger">Tidak ditemukan</span>';
                                         break;

@@ -159,6 +159,12 @@
                 case '3':
                     $status = 'info';
                     break;
+                case '4':
+                    $status = 'warning';
+                    break;  
+                case '5':
+                    $status = 'success';
+                    break;
 
                 default:
                     $status = 'light';
@@ -187,6 +193,7 @@
                         <p class="card-text">Siswa dinyatakan lulus wawancara</p>
                         <img src="<?= base_url('uploads/buktitf/') . $siswa['bukti_tf'] ?>" class="zoom" style="max-width: 100%;" alt="bukti tf">
 
+                        <!-- badge -->
                         <div class="mt-3">
                             <label><strong>Berkas Pendaftaran:</strong></label>
                             <div id="badge-container">
@@ -218,6 +225,44 @@
                                     });
                             });
                         </script>
+                        <!-- badge -->
+                         <?php } elseif ($siswa['stage'] == 5) { ?>
+                        <p class="card-text">Berkas pendaftaran telah selesai</p>
+                        <img src="<?= base_url('uploads/buktitf/') . $siswa['bukti_tf'] ?>" class="zoom" style="max-width: 100%;" alt="bukti tf">
+
+                        <!-- badge -->
+                        <div class="mt-3">
+                            <label><strong>Berkas Pendaftaran:</strong></label>
+                            <div id="badge-container">
+                                <span class="badge bg-secondary">Memuat...</span>
+                            </div>
+                        </div>
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                fetch("/api/berkas/<?= $siswa['id'] ?>")
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        const jenisList = ["foto", "akta", "kk", "surat"];
+                                        let html = "";
+
+                                        jenisList.forEach(jenis => {
+                                            if (data[jenis]) {
+                                                html += `<a href="/uploads/${jenis}/${data[jenis]}" class="badge bg-primary me-1 text-decoration-none" target="_blank">${jenis}</a>`;
+                                            } else {
+                                                html += `<span class="badge bg-secondary me-1">${jenis}</span>`;
+                                            }
+                                        });
+
+                                        document.getElementById("badge-container").innerHTML = html;
+                                    })
+                                    .catch(err => {
+                                        document.getElementById("badge-container").innerHTML = "<span class='text-danger'>Gagal memuat data berkas.</span>";
+                                        console.error(err);
+                                    });
+                            });
+                        </script>
+                        <!-- badge -->
                     <?php } else { ?>
                         <h5 class="card-title">Belum ada bukti transfer</h5>
                         <p class="card-text">Peserta belum mengirimkan bukti transfer</p>
