@@ -3,10 +3,10 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use ZipArchive;
 use App\Models\Files as FilesModel;
 use App\Models\Siswa;
-use Dompdf\Dompdf;
-use ZipArchive;
+use Mpdf\Mpdf;
 
 class Download extends BaseController
 {
@@ -21,6 +21,8 @@ class Download extends BaseController
 
     public function bulk()
     {
+        helper('filesystem');
+
         $ids = $this->request->getPost('ids');
         if (!$ids) {
             return redirect()->back()->with('error', 'Tidak ada data yang dipilih.');
@@ -39,128 +41,152 @@ class Download extends BaseController
             return redirect()->back()->with('error', 'Gagal membuat file ZIP.');
         }
 
+        $missingFiles = [];
+
         foreach ($idsArray as $id) {
             $siswa = $this->siswa->find($id);
-            if (!$siswa) {
-                continue;
-            }
+            if (!$siswa) continue;
 
-            $folderName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $siswa['nama']);
-            
-            // Ambil semua file siswa
+            // Folder per siswa dalam ZIP
+            $folderName = 'berkas_pendaftaran-' . preg_replace('/[^A-Za-z0-9_\-]/', '_', $siswa['nama']);
+
+            // === File berdasarkan jenis ===
             $files = $this->files->where('id_siswa', $id)->findAll();
             foreach ($files as $f) {
+                $ext = pathinfo($f['path'], PATHINFO_EXTENSION);
                 $jenis = strtolower($f['jenis']);
-                $fileName = $jenis . '.' . pathinfo($f['path'], PATHINFO_EXTENSION);
+                $fileNameInZip = $folderName . '/' . $jenis . '.' . $ext;
 
                 $candidates = [
                     FCPATH . 'uploads/' . $jenis . '/' . $f['path'],
                     ROOTPATH . 'uploads/' . $jenis . '/' . $f['path'],
                     WRITEPATH . 'uploads/' . $jenis . '/' . $f['path'],
-                    FCPATH . 'uploads/' . $f['path'],
-                    ROOTPATH . 'uploads/' . $f['path'],
-                    WRITEPATH . 'uploads/' . $f['path'],
                 ];
 
+                $found = false;
                 foreach ($candidates as $path) {
                     if (is_file($path)) {
-                        $zip->addFile($path, $folderName . '/' . $fileName);
+                        $zip->addFile($path, $fileNameInZip);
+                        $found = true;
                         break;
                     }
                 }
+                if (!$found) {
+                    $missingFiles[] = $fileNameInZip;
+                }
             }
 
-            // Generate form PDF untuk siswa ini
-            $pdfPath = WRITEPATH . 'downloads/' . $folderName . '_form.pdf';
-            $this->generatePDF($siswa, $pdfPath);
+            // === Bukti Transfer ===
+            if (!empty($siswa['bukti_tf'])) {
+                $buktiExt = pathinfo($siswa['bukti_tf'], PATHINFO_EXTENSION);
+                $buktiCandidates = [
+                    FCPATH . 'uploads/buktitf/' . $siswa['bukti_tf'],
+                    ROOTPATH . 'uploads/buktitf/' . $siswa['bukti_tf'],
+                    WRITEPATH . 'uploads/buktitf/' . $siswa['bukti_tf'],
+                ];
+                $foundBukti = false;
+                foreach ($buktiCandidates as $buktiPath) {
+                    if (is_file($buktiPath)) {
+                        $zip->addFile($buktiPath, $folderName . '/bukti_transfer.' . $buktiExt);
+                        $foundBukti = true;
+                        break;
+                    }
+                }
+                if (!$foundBukti) {
+                    $missingFiles[] = $folderName . '/bukti_transfer.' . $buktiExt;
+                }
+            }
+
+            // === Form PDF ===
+            $pdfPath = WRITEPATH . 'temp/form_' . $id . '.pdf';
+            if (!is_dir(dirname($pdfPath))) {
+                mkdir(dirname($pdfPath), 0755, true);
+            }
+
+            $this->generateFormPDF($siswa, $pdfPath);
             if (is_file($pdfPath)) {
                 $zip->addFile($pdfPath, $folderName . '/form.pdf');
+            } else {
+                $missingFiles[] = $folderName . '/form.pdf';
             }
         }
 
         $zip->close();
 
-        // Hapus PDF sementara
-        foreach ($idsArray as $id) {
-            $siswa = $this->siswa->find($id);
-            if ($siswa) {
-                $folderName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $siswa['nama']);
-                @unlink(WRITEPATH . 'downloads/' . $folderName . '_form.pdf');
-            }
+        if (!is_file($zipFile)) {
+            return redirect()->back()->with('error', 'ZIP gagal dibuat.');
         }
+
+        if (!empty($missingFiles)) {
+            session()->setFlashdata('warning', 'Beberapa file tidak ditemukan: ' . implode(', ', array_slice($missingFiles, 0, 10)));
+        }
+
+        register_shutdown_function(function () use ($zipFile) {
+            @unlink($zipFile);
+        });
 
         return $this->response->download($zipFile, null)->setFileName(basename($zipFile));
     }
 
-    private function generatePDF($siswa, $pdfPath)
-    {
-        $alamatSiswa = $this->getAlamatSiswa($siswa['id']);
-        $alamatSekolah = $this->getAlamatSekolah($siswa['id']);
+    /**
+     * Membuat PDF Form Siswa (A4 Portrait)
+     */
+private function generateFormPDF($siswa, $outputPath)
+{
+    $mpdf = new \Mpdf\Mpdf(['format' => 'A4']);
+
+
+        // Logo sekolah
+        $logoPath = FCPATH . 'assets/img/logo.png';
+
+        // Ambil alamat lengkap
+        $alamatSiswa = $this->getAlamatLengkap($siswa['detail_alamat'], $siswa['prov1'], $siswa['kabko1'], $siswa['kec1'], $siswa['kelurahan1']);
+        $alamatSekolah = $this->getAlamatLengkap('', $siswa['prov2'], $siswa['kabko2'], $siswa['kec2'], $siswa['kelurahan2']);
 
         $html = '
-        <html>
-        <head>
-            <style>
-                body { font-family: sans-serif; font-size: 12px; }
-                .header { display: flex; align-items: center; }
-                .header img { height: 60px; margin-right: 15px; }
-                .title { font-size: 20px; font-weight: bold; }
-                table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                td { padding: 5px; vertical-align: top; }
-            </style>
-        </head>
-        <body>
-            <div class="header">
-                <div class="title">Formulir Pendaftaran Siswa</div>
-            </div>
-            <table>
-                <tr><td><b>Nama</b></td><td>: ' . $siswa['nama'] . '</td></tr>
-                <tr><td><b>Gender</b></td><td>: ' . $siswa['jk'] . '</td></tr>
-                <tr><td><b>Tempat, Tanggal Lahir</b></td><td>: ' . $siswa['tempat_lahir'] . ', ' . $siswa['tgl_lahir'] . '</td></tr>
-                <tr><td><b>Orang Tua</b></td><td>: ' . $siswa['ortu'] . '</td></tr>
-                <tr><td><b>Telp Ortu</b></td><td>: ' . $siswa['telp_ortu'] . '</td></tr>
-                <tr><td><b>Alamat Siswa</b></td><td>: ' . $alamatSiswa . '</td></tr>
-                <tr><td><b>Asal Sekolah</b></td><td>: ' . $siswa['nama_sekolah'] . '</td></tr>
-                <tr><td><b>Alamat Sekolah</b></td><td>: ' . $alamatSekolah . '</td></tr>
-                <tr><td><b>Jalur</b></td><td>: ' . $siswa['jalur'] . '</td></tr>
-                <tr><td><b>Tahun Ajaran</b></td><td>: ' . $siswa['tahunajar'] . '</td></tr>
-            </table>
-        </body>
-        </html>
+        <div style="text-align:center;">
+            <img src="' . $logoPath . '" height="80">
+            <h2>FORM PENDAFTARAN</h2>
+            <h3>' . htmlspecialchars($siswa['nama']) . '</h3>
+            <hr>
+        </div>
+        <h4>Data Siswa</h4>
+        <p>Nama: ' . $siswa['nama'] . '</p>
+        <p>Gender: ' . $siswa['jk'] . '</p>
+        <p>Tempat & Tanggal Lahir: ' . $siswa['tempat_lahir'] . ', ' . $siswa['tgl_lahir'] . '</p>
+        <p>Orang Tua: ' . $siswa['ortu'] . '</p>
+        <p>Telpon: ' . $siswa['telp_ortu'] . '</p>
+
+        <h4>Alamat Siswa</h4>
+        <p>' . $alamatSiswa . '</p>
+
+        <h4>Data Sekolah Asal</h4>
+        <p>Nama Sekolah: ' . $siswa['nama_sekolah'] . '</p>
+        <p>Alamat Sekolah: ' . $alamatSekolah . '</p>
+
+        <h4>Informasi Lain</h4>
+        <p>Jalur: ' . $siswa['jalur'] . '</p>
+        <p>Tahun Ajaran: ' . $siswa['tahunajar'] . '</p>
         ';
 
-        $dompdf = new Dompdf();
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
-        file_put_contents($pdfPath, $dompdf->output());
+        $mpdf->WriteHTML($html);
+        $mpdf->Output($outputPath, \Mpdf\Output\Destination::FILE);
     }
 
-    private function getAlamatSiswa($id)
+    private function getAlamatLengkap($detail, $provId, $kabId, $kecId, $kelId)
     {
-        $data = $this->siswa->find($id);
-        $provinsi = $this->getRegionName('t_provinsi', $data['prov1']);
-        $kabupaten = $this->getRegionName('t_kota', $data['kabko1']);
-        $kecamatan = $this->getRegionName('t_kecamatan', $data['kec1']);
-        $kelurahan = $this->getRegionName('t_kelurahan', $data['kelurahan1']);
-        return $data['detail_alamat'] . ', ' . $kelurahan . ', ' . $kecamatan . ', ' . $kabupaten . ', ' . $provinsi;
-    }
+        $prov = $this->getRegionName('t_provinsi', $provId);
+        $kab = $this->getRegionName('t_kota', $kabId);
+        $kec = $this->getRegionName('t_kecamatan', $kecId);
+        $kel = $this->getRegionName('t_kelurahan', $kelId);
 
-    private function getAlamatSekolah($id)
-    {
-        $data = $this->siswa->find($id);
-        $provinsi = $this->getRegionName('t_provinsi', $data['prov2']);
-        $kabupaten = $this->getRegionName('t_kota', $data['kabko2']);
-        $kecamatan = $this->getRegionName('t_kecamatan', $data['kec2']);
-        $kelurahan = $this->getRegionName('t_kelurahan', $data['kelurahan2']);
-        return $kelurahan . ', ' . $kecamatan . ', ' . $kabupaten . ', ' . $provinsi;
+        return trim($detail . ', ' . $kel . ', ' . $kec . ', ' . $kab . ', ' . $prov, ', ');
     }
 
     private function getRegionName($table, $id)
     {
         $db = \Config\Database::connect();
-        $query = $db->table($table)->select('nama')->where('id', $id)->get();
-        $result = $query->getRow();
-        return $result ? $result->nama : '';
+        $row = $db->table($table)->select('nama')->where('id', $id)->get()->getRow();
+        return $row ? $row->nama : '';
     }
 }
