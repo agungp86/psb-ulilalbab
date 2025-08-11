@@ -111,7 +111,6 @@ class Download extends BaseController
         </head>
         <body>
             <div class="header">
-                <img src="' . FCPATH . 'assets/img/logo.png" />
                 <div class="title">Formulir Pendaftaran Siswa</div>
             </div>
             <table>
