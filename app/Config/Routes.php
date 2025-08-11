@@ -27,6 +27,8 @@ $routes->get('/api/berkas/(:num)', 'Uploads::getBerkasJson/$1');
 
 //Download data
 $routes->get('/downloadExcel', 'Excel::downloadExcel');
+$routes->post('download/bulk', 'Download::bulk');
+$routes->post('siswa/deleteBulk', 'Siswa::deleteBulk');
 
 
 // route siswa 

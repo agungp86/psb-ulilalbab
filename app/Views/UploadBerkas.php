@@ -32,7 +32,17 @@
         ];
         $t = 0
         ?>
-
+ <!-- ==== TOMBOL LANJUT KE STAGE 5 ==== -->
+        <?php
+        // jika semua nilai di $isUploaded adalah true
+        if (isset($isUploaded) && $t != 4):
+        ?>
+            <div class="card w-100 mt-5 bg-danger p-2 text-dark bg-opacity-25">
+                <div class="card-body">
+                    <h5 class="card-title">Silahkan upload berkas yang belum di-upload</h5>
+                </div>   
+            </div>
+        <?php endif; ?>
         <?php foreach ($daftarBerkas as $item): ?>
             <?php
             $file = $berkas[$item['name']] ?? null;
