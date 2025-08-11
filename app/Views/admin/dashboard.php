@@ -48,13 +48,27 @@
                                 </button>
                                 <?php
                                 switch ($k['stage']) {
-                                    case 0: echo '<span class="badge text-bg-secondary">belum bayar</span>'; break;
-                                    case 1: echo '<span class="badge text-bg-success">sudah bayar</span>'; break;
-                                    case 2: echo '<span class="badge text-bg-primary">terkonfirmasi</span>'; break;
-                                    case 3: echo '<span class="badge text-bg-info">lulus wawancara</span>'; break;
-                                    case 4: echo '<span class="badge text-bg-warning">lulus seleksi</span>'; break;
-                                    case 5: echo '<span class="badge text-bg-success">berkas lengkap</span>'; break;
-                                    default: echo '<span class="badge text-bg-danger">Tidak ditemukan</span>'; break;
+                                    case 0:
+                                        echo '<span class="badge text-bg-secondary">belum bayar</span>';
+                                        break;
+                                    case 1:
+                                        echo '<span class="badge text-bg-success">sudah bayar</span>';
+                                        break;
+                                    case 2:
+                                        echo '<span class="badge text-bg-primary">terkonfirmasi</span>';
+                                        break;
+                                    case 3:
+                                        echo '<span class="badge text-bg-info">lulus wawancara</span>';
+                                        break;
+                                    case 4:
+                                        echo '<span class="badge text-bg-warning">lulus seleksi</span>';
+                                        break;
+                                    case 5:
+                                        echo '<span class="badge text-bg-success">berkas lengkap</span>';
+                                        break;
+                                    default:
+                                        echo '<span class="badge text-bg-danger">Tidak ditemukan</span>';
+                                        break;
                                 }
                                 ?>
                             </td>
@@ -85,19 +99,65 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="ids" id="selectedIds">
+
                     <div class="mb-3">
                         <label class="form-label">Aksi</label>
-                        <select name="action" class="form-select" required>
+                        <select name="action" id="actionSelect" class="form-select" required>
                             <option value="">-- Pilih Aksi --</option>
                             <option value="download">Download Kolektif</option>
                             <option value="delete">Hapus Kolektif</option>
                         </select>
                     </div>
-                    <p class="text-muted small">Pastikan sudah memilih siswa di tabel sebelum menekan tombol konfirmasi.</p>
+
+                    <!-- Field konfirmasi hapus (hidden awalnya) -->
+                    <div class="mb-3" id="deleteConfirmWrapper" style="display: none;">
+                        <label class="form-label text-danger fw-bold">
+                            Konfirmasi Hapus
+                        </label>
+                        <input type="text" id="deleteConfirmInput" class="form-control" placeholder="Ketik HAPUS untuk melanjutkan">
+                        <div class="form-text text-muted">
+                            Data yang dihapus tidak dapat dikembalikan.
+                        </div>
+                    </div>
+
+                    <p class="text-muted small">
+                        Pastikan sudah memilih siswa di tabel sebelum menekan tombol konfirmasi.
+                    </p>
                 </div>
+
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Jalankan</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" id="modalSubmitBtn" class="btn btn-primary" disabled>Konfirmasi</button>
                 </div>
+
+                <script>
+                    const actionSelect = document.getElementById('actionSelect');
+                    const deleteConfirmWrapper = document.getElementById('deleteConfirmWrapper');
+                    const deleteConfirmInput = document.getElementById('deleteConfirmInput');
+                    const modalSubmitBtn = document.getElementById('modalSubmitBtn');
+
+                    actionSelect.addEventListener('change', function() {
+                        if (this.value === 'delete') {
+                            deleteConfirmWrapper.style.display = 'block';
+                            modalSubmitBtn.disabled = true;
+                        } else if (this.value === 'download') {
+                            deleteConfirmWrapper.style.display = 'none';
+                            modalSubmitBtn.disabled = false;
+                        } else {
+                            deleteConfirmWrapper.style.display = 'none';
+                            modalSubmitBtn.disabled = true;
+                        }
+                    });
+
+                    deleteConfirmInput.addEventListener('input', function() {
+                        if (this.value.trim().toUpperCase() === 'HAPUS') {
+                            modalSubmitBtn.disabled = false;
+                        } else {
+                            modalSubmitBtn.disabled = true;
+                        }
+                    });
+                </script>
+
             </div>
         </form>
     </div>
@@ -118,8 +178,8 @@
             return;
         }
         document.getElementById('selectedIds').value = selected.join(',');
-        this.action = (document.querySelector('[name="action"]').value === 'download')
-            ? "<?= base_url('download/bulk') ?>"
-            : "<?= base_url('siswa/deleteBulk') ?>";
+        this.action = (document.querySelector('[name="action"]').value === 'download') ?
+            "<?= base_url('download/bulk') ?>" :
+            "<?= base_url('siswa/deleteBulk') ?>";
     });
 </script>
