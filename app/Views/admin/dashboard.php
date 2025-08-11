@@ -90,7 +90,7 @@
                         <select name="action" class="form-select" required>
                             <option value="">-- Pilih Aksi --</option>
                             <option value="download">Download Kolektif</option>
-                            <option value="delete">Hapus Kolektif</option>
+                            <!-- <option value="delete">Hapus Kolektif</option> -->
                         </select>
                     </div>
                     <p class="text-muted small">Pastikan sudah memilih siswa di tabel sebelum menekan tombol konfirmasi.</p>
