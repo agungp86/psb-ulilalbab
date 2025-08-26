@@ -72,34 +72,34 @@ class Uploads extends BaseController
         );
     }
 
-    private function handleUpload($field, $jenis, $allowedMime, $folder)
-    {
-        $file = $this->request->getFile($field);
-        $id = $this->decodeId($this->request->getPost('id'));;
+    private function handleUpload($fieldName, $folder, $allowedTypes, $dbField)
+{
+    $file = $this->request->getFile($fieldName);
 
-        if ($file && $file->isValid() && !$file->hasMoved()) {
-            if ($file->getMimeType() == $allowedMime) {
-                // Delete old file if exists
-                $this->deleteExisting($jenis, $id);
+    if ($file && $file->isValid() && !$file->hasMoved()) {
+        $mimeType = $file->getMimeType();
 
-                $newName = $file->getRandomName();
-                $file->move('uploads/' . $folder, $newName);
+        // kalau allowedTypes berupa string, ubah jadi array dulu
+        $allowedTypes = (array) $allowedTypes;
 
-                // Save to DB
-                $this->files->insert([
-                    'jenis' => $jenis,
-                    'path' => $newName,
-                    'id_siswa' => $id
-                ]);
-
-                return redirect()->to(previous_url())->with('success', ucfirst($jenis) . ' berhasil diupload.');
-            } else {
-                return redirect()->to(previous_url())->with('error', 'Hanya file bertipe ' . $allowedMime . ' yang diizinkan untuk ' . ucfirst($jenis) . '.');
-            }
-        } else {
-            return redirect()->to(previous_url())->with('error', 'Gagal mengupload file ' . ucfirst($jenis) . '.');
+        if (!in_array($mimeType, $allowedTypes)) {
+            return redirect()->back()->with('error', 'Jenis file tidak diizinkan.');
         }
+
+        $newName = $file->getRandomName();
+        $file->move(FCPATH . 'uploads/' . $folder, $newName);
+
+        // update database
+        $id = $this->request->getPost('id');
+        $this->siswaModel->update($id, [
+            $dbField => $newName
+        ]);
+
+        return redirect()->back()->with('success', ucfirst($dbField) . ' berhasil diupload.');
     }
+
+    return redirect()->back()->with('error', 'Gagal upload file.');
+}
 
     private function deleteExisting($jenis, $id)
     {
