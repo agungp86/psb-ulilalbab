@@ -40,66 +40,52 @@ class Uploads extends BaseController
 
     public function uploadFoto()
     {
-        return $this->handleUpload('foto', 'foto', 'image/jpeg', 'foto');
+        return $this->handleUpload('foto', 'foto', ['image/jpeg', 'image/png'], 'foto');
     }
+
     public function uploadAkta()
     {
-        return $this->handleUpload(
-            'akta',
-            'akta',
-            ['application/pdf', 'image/jpeg', 'image/png'],
-            'akta'
-        );
+        return $this->handleUpload('akta', 'akta', ['application/pdf', 'image/jpeg', 'image/png'], 'akta');
     }
 
     public function uploadKk()
     {
-        return $this->handleUpload(
-            'kk',
-            'kk',
-            ['application/pdf', 'image/jpeg', 'image/png'],
-            'kk'
-        );
+        return $this->handleUpload('kk', 'kk', ['application/pdf', 'image/jpeg', 'image/png'], 'kk');
     }
 
     public function uploadSurat()
     {
-        return $this->handleUpload(
-            'surat',
-            'surat',
-            ['application/pdf', 'image/jpeg', 'image/png'],
-            'surat'
-        );
+        return $this->handleUpload('surat', 'surat', ['application/pdf', 'image/jpeg', 'image/png'], 'surat');
     }
 
-    private function handleUpload($fieldName, $folder, $allowedTypes, $dbField)
-{
-    $file = $this->request->getFile($fieldName);
+    private function handleUpload($field, $jenis, $allowedMime, $folder)
+    {
+        $file = $this->request->getFile($field);
+        $id = $this->decodeId($this->request->getPost('id'));;
 
-    if ($file && $file->isValid() && !$file->hasMoved()) {
-        $mimeType = $file->getMimeType();
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            if (in_array(strtolower($file->getMimeType()), array_map('strtolower', $allowedMime))) {
+                // Delete old file if exists
+                $this->deleteExisting($jenis, $id);
 
-        // kalau allowedTypes berupa string, ubah jadi array dulu
-        $allowedTypes = (array) $allowedTypes;
+                $newName = $file->getRandomName();
+                $file->move('uploads/' . $folder, $newName);
 
-        if (!in_array($mimeType, $allowedTypes)) {
-            return redirect()->back()->with('error', 'Jenis file tidak diizinkan.');
+                // Save to DB
+                $this->files->insert([
+                    'jenis' => $jenis,
+                    'path' => $newName,
+                    'id_siswa' => $id
+                ]);
+
+                return redirect()->to(previous_url())->with('success', ucfirst($jenis) . ' berhasil diupload.');
+            } else {
+                return redirect()->to(previous_url())->with('error', 'Hanya file bertipe ' . $allowedMime . ' yang diizinkan untuk ' . ucfirst($jenis) . '.');
+            }
+        } else {
+            return redirect()->to(previous_url())->with('error', 'Gagal mengupload file ' . ucfirst($jenis) . '.');
         }
-
-        $newName = $file->getRandomName();
-        $file->move(FCPATH . 'uploads/' . $folder, $newName);
-
-        // update database
-        $id = $this->request->getPost('id');
-        $this->siswaModel->update($id, [
-            $dbField => $newName
-        ]);
-
-        return redirect()->back()->with('success', ucfirst($dbField) . ' berhasil diupload.');
     }
-
-    return redirect()->back()->with('error', 'Gagal upload file.');
-}
 
     private function deleteExisting($jenis, $id)
     {

@@ -44,3 +44,4 @@ $routes->post('/berkas/upload/akta',       'Uploads::uploadAkta');
 $routes->post('/berkas/upload/kk',         'Uploads::uploadKk');
 $routes->post('/berkas/upload/surat',      'Uploads::uploadSurat');
 $routes->post( '/uploadBerkas/next', 'Uploads::setStage5');
+
