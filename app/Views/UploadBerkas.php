@@ -14,19 +14,19 @@
             [
                 'label' => 'Fotocopy Akta',
                 'name' => 'akta',
-                'accept' => '.pdf',
+                'accept' => '.pdf,.jpg,.jpeg,.png',
                 'folder' => 'akta',
             ],
             [
                 'label' => 'Fotocopy KK',
                 'name' => 'kk',
-                'accept' => '.pdf',
+                'accept' => '.pdf,.jpg,.jpeg,.png',
                 'folder' => 'kk',
             ],
             [
                 'label' => 'Surat Keterangan',
                 'name' => 'surat',
-                'accept' => '.pdf',
+                'accept' => '.pdf,.jpg,.jpeg,.png',
                 'folder' => 'surat',
             ],
         ];

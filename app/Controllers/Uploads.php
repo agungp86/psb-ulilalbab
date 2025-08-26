@@ -42,20 +42,34 @@ class Uploads extends BaseController
     {
         return $this->handleUpload('foto', 'foto', 'image/jpeg', 'foto');
     }
-
     public function uploadAkta()
     {
-        return $this->handleUpload('akta', 'akta', 'application/pdf', 'akta');
+        return $this->handleUpload(
+            'akta',
+            'akta',
+            ['application/pdf', 'image/jpeg', 'image/png'],
+            'akta'
+        );
     }
 
     public function uploadKk()
     {
-        return $this->handleUpload('kk', 'kk', 'application/pdf', 'kk');
+        return $this->handleUpload(
+            'kk',
+            'kk',
+            ['application/pdf', 'image/jpeg', 'image/png'],
+            'kk'
+        );
     }
 
     public function uploadSurat()
     {
-        return $this->handleUpload('surat', 'surat', 'application/pdf', 'surat');
+        return $this->handleUpload(
+            'surat',
+            'surat',
+            ['application/pdf', 'image/jpeg', 'image/png'],
+            'surat'
+        );
     }
 
     private function handleUpload($field, $jenis, $allowedMime, $folder)
