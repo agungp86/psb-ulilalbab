@@ -6,7 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
- // route admin
+// route admin
 $routes->get('/', 'Home::index');
 $routes->get('/adminsmpit', 'Home::Admin');
 $routes->post('/login', 'Home::AdminLogin');
@@ -43,5 +43,5 @@ $routes->post('/berkas/upload/foto',       'Uploads::uploadFoto');
 $routes->post('/berkas/upload/akta',       'Uploads::uploadAkta');
 $routes->post('/berkas/upload/kk',         'Uploads::uploadKk');
 $routes->post('/berkas/upload/surat',      'Uploads::uploadSurat');
-$routes->post( '/uploadBerkas/next', 'Uploads::setStage5');
-
+$routes->post('/berkas/upload/bukti_tf_DU',     'Uploads::uploadBuktiTfDU');
+$routes->post('/uploadBerkas/next', 'Uploads::setStage5');

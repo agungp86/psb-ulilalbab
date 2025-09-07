@@ -206,7 +206,7 @@
                                 fetch("/api/berkas/<?= $siswa['id'] ?>")
                                     .then(res => res.json())
                                     .then(data => {
-                                        const jenisList = ["foto", "akta", "kk", "surat"];
+                                        const jenisList = ["foto", "akta", "kk", "surat","bukti_tf_DU"];
                                         let html = "";
 
                                         jenisList.forEach(jenis => {
@@ -243,7 +243,7 @@
                                 fetch("/api/berkas/<?= $siswa['id'] ?>")
                                     .then(res => res.json())
                                     .then(data => {
-                                        const jenisList = ["foto", "akta", "kk", "surat"];
+                                        const jenisList = ["foto", "akta", "kk", "surat","bukti_tf_DU"];
                                         let html = "";
 
                                         jenisList.forEach(jenis => {

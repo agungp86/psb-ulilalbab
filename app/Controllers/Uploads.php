@@ -58,6 +58,11 @@ class Uploads extends BaseController
         return $this->handleUpload('surat', 'surat', ['application/pdf', 'image/jpeg', 'image/png'], 'surat');
     }
 
+    public function uploadBuktiTfDU()
+    {
+        return $this->handleUpload('bukti_tf_DU', 'bukti_tf_DU', ['application/pdf', 'image/jpeg', 'image/png'], 'bukti_tf_DU');
+    }
+
     private function handleUpload($field, $jenis, $allowedMime, $folder)
     {
         $file = $this->request->getFile($field);
